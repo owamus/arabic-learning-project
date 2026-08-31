@@ -1,0 +1,29 @@
+{
+  "name": "arabic-learning-project",
+  "version": "1.0.0",
+  "description": "A web app that pulls real Arabic articles and highlights unfamiliar vocabulary based on your personal known-word list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@vitalets/google-translate-api": "^9.2.1",
+    "express": "^5.2.1",
+    "open-google-translator": "^1.0.5",
+    "pg": "^8.23.0",
+    "sqlite3": "^6.0.1",
+    "translate": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owamus/arabic-graded-reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owamus/arabic-graded-reader/issues"
+  },
+  "homepage": "https://github.com/owamus/arabic-graded-reader#readme"
+}
