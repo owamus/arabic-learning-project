@@ -1,4 +1,4 @@
-const {Pool} = require('pg');
+import {Pool} from 'pg'
 
 const pool = new Pool ({ //using pool allows for multiple db connections
     host:'localhost',
@@ -17,4 +17,4 @@ pool.connect()
     console.log(result.rows);})
     .catch(err => console.error('❌ Failed:', err.message));
 
-module.exports = pool;
+export default pool;
