@@ -1,33 +1,34 @@
 import translate from "translate"
-import Pool from './db.js'
 import 'dotenv/config';
 import * as deepl from 'deepl-node';
+import client from "./db.js";
 
 async function fetchWikiArabic(){
-    const resp = await fetch("https://ar.wikipedia.org/w/api.php?action=query&prop=extracts&titles=%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE&format=json&explaintext=true")
-        .then((response)=> {
-            return response.json(); //this tears open the envelope so we can get the content info
-        })// and not the envelope info with headers and status
-
-    return await resp;
+    const resp = await fetch("https://ar.wikipedia.org/w/api.php?action=query&prop=extracts&titles=%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE&format=json&explaintext=true");
+    return await resp.json();
 }
 
-async function getArabicData(){
+async function getJSONObject(){
     let resp = await fetchWikiArabic();
 
-    let obj = Object.keys(resp.query.pages);
+    let obj = Object.keys(resp.query.pages);//
 
-    return resp.query.pages[obj[0].toString()].extract;
+    return resp.query.pages[obj[0].toString()];
 
+}
+
+async function getArticleTitle(){
+    let obj = getJSONObject();
+    return obj.title;
 }
 
 async function splittingData(){
 
     let resp = await getArabicData();
-    console.log(resp);
+    console.log(resp.extract);
 
     //Splitting article into sentences, removing irrelevancies
-    var sentences = resp.split(".");
+    var sentences = resp.extract.split(".");
 
     //getting rid of the newline and format string
     for (var i=0;i<sentences.length;i++){
@@ -52,23 +53,26 @@ async function translateData(){
     const authKey = process.env.DEEPL_KEY;
     const deeplClient = new deepl.DeepLClient(authKey);
 
-    (async () => {
-        const result = await deeplClient.translateText(content[0].toString(), null, 'en-GB');
-        console.log(result.text);
-    })();
 
-    // for(var sentence of content){
+    const result = await deeplClient.translateText(content[0].toString(), null, 'en-GB');
+    console.log(result.text);
+    var title = getArticleTitle();
 
-    //     var text = await translate(sentence, "en");
-    //     console.log(text)
+    for(var sentence of content){
 
-    // }
+        var text = await translate(sentence, "en");
+        console.log(text)
+        const query = {
+        text: 'INSERT INTO articles(article_content, article_english,category) VALUES($1, $2, $3) RETURNING *',
+        values: [sentence, text, title],
+        }
 
-
+        const res = await client.query(query)
+        console.log(res.rows[0])
+    }
 
 
 }
 
+getArabicData();
 
-
-translateData();
