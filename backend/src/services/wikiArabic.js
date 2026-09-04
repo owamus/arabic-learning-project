@@ -11,24 +11,16 @@ async function fetchWikiArabic(){
 async function getJSONObject(){
     let resp = await fetchWikiArabic();
 
-    let obj = Object.keys(resp.query.pages);//
+    let obj = Object.keys(resp.query.pages);//returning the array of keys of the object, with nested property access
 
-    return resp.query.pages[obj[0].toString()];
+    return resp.query.pages[obj[0].toString()]; //returning the object of the specific article we are looking at
 
 }
 
-async function getArticleTitle(){
-    let obj = getJSONObject();
-    return obj.title;
-}
-
-async function splittingData(){
-
-    let resp = await getArabicData();
-    console.log(resp.extract);
+function splittingData(wikiData){
 
     //Splitting article into sentences, removing irrelevancies
-    var sentences = resp.extract.split(".");
+    var sentences = wikiData.split(".");
 
     //getting rid of the newline and format string
     for (var i=0;i<sentences.length;i++){
@@ -44,7 +36,11 @@ async function splittingData(){
 }
 
 async function translateData(){
-    var content = await splittingData();
+    var wikiData = await getJSONObject();
+
+    var content = await splittingData(wikiData.extract);
+    var title = wikiData.title;
+
     console.log(content.length);
 
     let halflen = content.length/2;
@@ -53,26 +49,25 @@ async function translateData(){
     const authKey = process.env.DEEPL_KEY;
     const deeplClient = new deepl.DeepLClient(authKey);
 
-
-    const result = await deeplClient.translateText(content[0].toString(), null, 'en-GB');
-    console.log(result.text);
-    var title = getArticleTitle();
-
     for(var sentence of content){
+        //translating the sentence into english, and outputting
+        const result = await deeplClient.translateText(sentence.toString(), null, 'en-GB');
+        console.log(result.text);
 
-        var text = await translate(sentence, "en");
-        console.log(text)
+        //querying insert to the db table, articles.
         const query = {
         text: 'INSERT INTO articles(article_content, article_english,category) VALUES($1, $2, $3) RETURNING *',
-        values: [sentence, text, title],
+        values: [sentence, result.text, title],
         }
+        console.log(result.text);
 
-        const res = await client.query(query)
-        console.log(res.rows[0])
+        const res = await client.query(query);
+
+        console.log(res.rows[0]);
     }
 
 
 }
 
-getArabicData();
+
 
