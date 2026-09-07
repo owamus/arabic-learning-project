@@ -8,6 +8,7 @@ async function fetchWikiArabic(){
     return await resp.json();
 }
 
+
 async function getJSONObject(){
     let resp = await fetchWikiArabic();
 
@@ -16,6 +17,7 @@ async function getJSONObject(){
     return resp.query.pages[obj[0].toString()]; //returning the object of the specific article we are looking at
 
 }
+
 
 function splittingData(wikiData){
 
@@ -35,6 +37,7 @@ function splittingData(wikiData){
     return sentences;
 }
 
+
 async function translateData(){
     var wikiData = await getJSONObject();
 
@@ -46,28 +49,39 @@ async function translateData(){
     let halflen = content.length/2;
     content.splice(halflen,halflen) //only adding half of the articles content, deleting the other half
 
+    var translatedPairs = await translateSentences(content);
+    await insertSentences(translatedPairs,title);
+
+}
+
+
+async function translateSentences(sentences){
     const authKey = process.env.DEEPL_KEY;
     const deeplClient = new deepl.DeepLClient(authKey);
-
-    for(var sentence of content){
+    var pairs = []
+    for(var sentence of sentences){
         //translating the sentence into english, and outputting
         const result = await deeplClient.translateText(sentence.toString(), null, 'en-GB');
         console.log(result.text);
+        pairs.push({arabic: sentence, english: result.text});
 
-        //querying insert to the db table, articles.
+    }
+    return pairs;
+}
+
+
+async function insertSentences(translatedPairs,title){
+    for(var pair of translatedPairs){
+
         const query = {
-        text: 'INSERT INTO articles(article_content, article_english,category) VALUES($1, $2, $3) RETURNING *',
-        values: [sentence, result.text, title],
+            text: 'INSERT INTO articles(article_content, article_english,category) VALUES($1, $2, $3) RETURNING *',
+            values: [pair.arabic, pair.english, title],
         }
-        console.log(result.text);
 
         const res = await client.query(query);
 
         console.log(res.rows[0]);
     }
 
-
 }
-
-
 
