@@ -1,6 +1,6 @@
 import {Client} from 'pg'
 
-const client = new Client ({ //using pool allows for multiple db connections
+const client = new Client ({
     host:'localhost',
     port: 5432,
     user:'postgres',

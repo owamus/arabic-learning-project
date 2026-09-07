@@ -33,15 +33,16 @@ function splittingData(wikiData){
 
     sentences = sentences.filter((sentence)=> sentence.length>6);
     console.log(sentences.length);
-
+    console.log(wikiData.title);
     return sentences;
 }
 
 
 async function translateData(){
     var wikiData = await getJSONObject();
+    console.log(wikiData);
 
-    var content = await splittingData(wikiData.extract);
+    var content = splittingData(wikiData.extract);
     var title = wikiData.title;
 
     console.log(content.length);
@@ -74,7 +75,7 @@ async function insertSentences(translatedPairs,title){
     for(var pair of translatedPairs){
 
         const query = {
-            text: 'INSERT INTO articles(article_content, article_english,category) VALUES($1, $2, $3) RETURNING *',
+            text: 'INSERT INTO articles(article_content, article_english, category) VALUES($1, $2, $3) RETURNING *',
             values: [pair.arabic, pair.english, title],
         }
 
@@ -85,3 +86,4 @@ async function insertSentences(translatedPairs,title){
 
 }
 
+//translateData();
