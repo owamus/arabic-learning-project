@@ -1,7 +1,7 @@
 import translate from "translate"
 import 'dotenv/config';
 import * as deepl from 'deepl-node';
-import client from "./db.js";
+import client from "../db.js";
 
 async function fetchWikiArabic(){
     const resp = await fetch("https://ar.wikipedia.org/w/api.php?action=query&prop=extracts&titles=%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE&format=json&explaintext=true");
