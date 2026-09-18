@@ -75,7 +75,7 @@ async function insertSentences(translatedPairs,title){
     for(var pair of translatedPairs){
 
         const query = {
-            text: 'INSERT INTO articles(article_content, article_english, category) VALUES($1, $2, $3) RETURNING *',
+            text: 'INSERT INTO sentences(arabic_content,english_content, category) VALUES($1, $2, $3) RETURNING *',
             values: [pair.arabic, pair.english, title],
         }
 
