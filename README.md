@@ -1,12 +1,11 @@
 # Arabic Graded Reader
 
-A web app that pulls real Arabic articles and highlights unfamiliar
-vocabulary based on your personal known-word list.
+A web app that enables self testing of arabic sentences pulled from articles such as wikipedia and news articles.
 
 ## Status
 🚧 In development
 
 ## Tech Stack
 - Node.js / Express
-- SQLite
-- Vanilla JS / HTML / CSS
+- Postgresql
+- JS / HTML / CSS
