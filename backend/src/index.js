@@ -1,17 +1,13 @@
+import express from 'express';
+import sentenceRoutes from 'sentenceRoutes.js'
+const app = express();
+const port = 8087;
 
-const http = require('http');
-try{
+app.use(express.json());
 
-
-http.createServer((request, response)=> {
-    console.log('server runs smmooothly');
-    response.end("hellow");
-}).listen(8087);
-
-
-}
-catch(err){
-    console.log(err);
-}
+app.use('/api', sentenceRoutes);
 
 
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
