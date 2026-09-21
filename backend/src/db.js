@@ -11,10 +11,7 @@ const client = new Client ({
 
 client.connect()
   .then(() => {console.log('✅ Connected!');
-    return client.query('SELECT * FROM words');
     })
-    .then(result => {
-    console.log(result.rows);})
     .catch(err => console.error('❌ Failed:', err.message));
 
 export default client;
