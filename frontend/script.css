@@ -1,0 +1,54 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.btnAns{
+    background-color: transparent;
+    color: yellow;
+}
+h1{
+    font-family: 'roboto',sans-serif;
+}
+.btnAnswers{
+    background-color: black;
+    color: yellow;
+    align-items: center;
+    font-family: 'roboto',sans-serif;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    min-width: 400px;
+}
+body, input, button {
+    font-size: var(--Mhs7de);
+    font-family: Arial, sans-serif;
+    color: var(--YLNNHc);
+}
+body{
+    display: flex;
+    flex-direction: column;
+
+}
+button{
+    margin: 10px;
+    border-radius: 25px;
+}
+
+.btnAns,.centered-div{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'roboto',sans-serif;
+    background-color: black;
+    color: yellow;
+
+}
+
+.btn{
+    color: black;
+}
