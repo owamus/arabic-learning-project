@@ -4,9 +4,16 @@ import cors from 'cors';
 
 const app = express();
 const port = 3000;
-
 app.use(express.json());
-app.use(cors({origin: 'file:///Users/owaismustafa/Arabic%20Learning%20Project/frontend/index.html'}))
+app.use(cors());
+const options = {
+
+    origin: ['http://127.0.0.1:5500/frontend/']
+
+};
+
+app.use(cors(options));
+
 app.use('/api', sentenceRoutes);
 
 app.get('/', (req, res) => {
@@ -15,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running athttp://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
 
 //
