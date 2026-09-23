@@ -4,7 +4,8 @@
   "description": "A web app that pulls real Arabic articles and highlights unfamiliar vocabulary based on your personal known-word list.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "@vitalets/google-translate-api": "^9.2.1",
+    "cors": "^2.8.6",
     "deepl-node": "^1.28.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -27,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/owamus/arabic-graded-reader/issues"
   },
-  "homepage": "https://github.com/owamus/arabic-graded-reader#readme"
+  "homepage": "https://github.com/owamus/arabic-graded-reader#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
