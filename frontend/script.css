@@ -31,14 +31,17 @@ body, input, button {
 body{
     display: flex;
     flex-direction: column;
+    padding: 20px 150px;
 
 }
 button{
     margin: 10px;
     border-radius: 25px;
+    cursor: pointer;
+    border: none;
 }
 
-.btnAns,.centered-div{
+/* .btnAns,.centered-div{
 
     display: flex;
     flex-direction: row;
@@ -47,8 +50,58 @@ button{
     background-color: black;
     color: yellow;
 
+} */
+.arabic{
+    display: flex;
+    flex-direction: row;
+    margin-right: 1px;
+}
+.btnAns,.centered-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border: none;
+    border-radius: 0px;
+
+}
+.centered-div{
+    width: 50%;
+    margin: 0 auto;
+
+
 }
 
+
 .btn{
-    color: black;
+    background-color: black;
+    border-radius: 7px;
+    color: white;
+    height: 60px;
+    width: auto;
+    padding: 10px;
+
+}
+
+.beneath-arabic{
+    display: flex;
+    flex-direction: row;
+}
+
+.skip-btn{
+    width: 50px;
+    background-color:rgb(63, 61, 61);
+    color: white;
+    border: none;
+}
+
+button:hover {
+    outline: 2px solid whitesmoke;
+    cursor: pointer;
+}
+.submitBtn{
+    padding: 20px;
+    width: 500px;
+}
+.submitBtn:hover{
+    background-color: rgba(74, 198, 78, 0.76);
+
 }
