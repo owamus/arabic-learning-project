@@ -31,7 +31,7 @@ async function splitEnglish(sentence){
         }
     });
 
- }
+}
 
 //adding arabic sentence and answer buttons to the page
 async function addSentence(){
