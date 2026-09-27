@@ -6,24 +6,35 @@ async function getSentence(){
     return data
 }
 //adding english words into buttons
+//ADDING ANSWER BUTTONS
 function add(EnglishWord) {
-    const newSelection = document.createElement("button");
-    const container = document.querySelector('.centered-div');
+    if (EnglishWord.length>0){
+        const newSelection = document.createElement("button");
 
-    newSelection.innerText = EnglishWord;
-    newSelection.className = "btn";
+        const container = document.querySelector('.centered-div');
 
-    container.appendChild(newSelection);
+        newSelection.innerText = EnglishWord;
+        newSelection.className = 'AnswerBtns';
+
+        container.appendChild(newSelection);
+    }
+
 }
 
 async function splitEnglish(sentence){
     const arrayWords = sentence.split(" ");
     arrayWords.sort(()=> Math.random()-0.5);
-    arrayWords.forEach(element => {
-        add(element);
-    });
-}
 
+    arrayWords.forEach(element =>{
+        element = element.replace(/[!"“”#$%&'’‘()*+,-./:;<=>?@[\]^_`{|}~]/g, '').toLowerCase().trim()
+        if (element.length > 0){
+            add(element);
+        }
+    });
+
+ }
+
+//adding arabic sentence and answer buttons to the page
 async function addSentence(){
     const obj = await getSentence();
     const arabic = obj.arabic_content;
@@ -33,9 +44,13 @@ async function addSentence(){
 
 }
 
+//Skip button logic
+document.querySelector(".skip-btn").addEventListener("click", (event) =>{
+        document.querySelectorAll('.AnswerBtns').forEach(btn => btn.remove());
+        addSentence();
+    });
+
 addSentence();
-
-
 
 
 

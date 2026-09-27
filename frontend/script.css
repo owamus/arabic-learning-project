@@ -1,19 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-.btnAns{
-    background-color: transparent;
-    color: yellow;
-}
 h1{
     font-family: 'roboto',sans-serif;
 }
-.btnAnswers{
-    background-color: black;
-    color: yellow;
-    align-items: center;
-    font-family: 'roboto',sans-serif;
-}
+
 
 body, html {
     height: 100%;
@@ -41,37 +32,22 @@ button{
     border: none;
 }
 
-/* .btnAns,.centered-div{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-family: 'roboto',sans-serif;
-    background-color: black;
-    color: yellow;
-
-} */
 .arabic{
     display: flex;
     flex-direction: row;
     margin-right: 1px;
 }
-.btnAns,.centered-div{
+.centered-div{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     border: none;
     border-radius: 0px;
-
-}
-.centered-div{
     width: 50%;
     margin: 0 auto;
-
-
 }
 
 
-.btn{
+.AnswerBtns{
     background-color: black;
     border-radius: 7px;
     color: white;
@@ -87,7 +63,8 @@ button{
 }
 
 .skip-btn{
-    width: 50px;
+    width: 100px;
+    height: 50px;
     background-color:rgb(63, 61, 61);
     color: white;
     border: none;
@@ -100,8 +77,18 @@ button:hover {
 .submitBtn{
     padding: 20px;
     width: 500px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: black;
+
 }
 .submitBtn:hover{
     background-color: rgba(74, 198, 78, 0.76);
 
+}
+.skip-btn:hover{
+    opacity: 80%;
+}
+.AnswerBtns:hover{
+    opacity: 50%;
 }
