@@ -8,16 +8,15 @@ async function getSentence(){
 //adding english words into buttons
 //ADDING ANSWER BUTTONS
 function add(EnglishWord) {
-    if (EnglishWord.length>0){
-        const newSelection = document.createElement("button");
+    const newSelection = document.createElement("button");
 
-        const container = document.querySelector('.centered-div');
+    const container = document.querySelector('.centered-div');
 
-        newSelection.innerText = EnglishWord;
-        newSelection.className = 'AnswerBtns';
+    newSelection.innerText = EnglishWord;
+    newSelection.className= 'answer-btns';
 
-        container.appendChild(newSelection);
-    }
+    container.appendChild(newSelection);
+
 
 }
 
@@ -46,7 +45,7 @@ async function addSentence(){
 
 //Skip button logic
 document.querySelector(".skip-btn").addEventListener("click", (event) =>{
-        document.querySelectorAll('.AnswerBtns').forEach(btn => btn.remove());
+        document.querySelectorAll('.answer-btns').forEach(btn => btn.remove());
         addSentence();
     });
 

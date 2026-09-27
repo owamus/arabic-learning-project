@@ -47,7 +47,7 @@ button{
 }
 
 
-.AnswerBtns{
+.answer-btns{
     background-color: black;
     border-radius: 7px;
     color: white;
@@ -89,6 +89,6 @@ button:hover {
 .skip-btn:hover{
     opacity: 80%;
 }
-.AnswerBtns:hover{
+.answer-btns:hover{
     opacity: 50%;
 }
