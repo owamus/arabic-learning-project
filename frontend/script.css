@@ -1,9 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-h1{
-    font-family: 'roboto',sans-serif;
-}
 
 body, html {
     height: 100vh;
@@ -36,7 +34,16 @@ button{
     color: white;
     display: flex;
     flex-direction: row;
+    justify-content: right;
     margin-right: 1px;
+
+}
+#sentence{
+    justify-content: right;
+    display: flex;
+    flex-direction: row;
+    font-family:'Amiri',serif;
+    text-align: right;
 }
 .centered-div{
     display: flex;
@@ -47,8 +54,8 @@ button{
     width: 80%;
     margin: 0 auto;
     flex: 1;              /* takes up remaining space between title and skip/submit buttons */
-    overflow-y: auto;     /* ONLY this section scrolls if word count is really high — not the whole page */
-
+    overflow-y: scroll;     /* ONLY this section scrolls if word count is really high — not the whole page */
+    position: relative;
 }
 .answer-btns{
     background-color: rgb(255, 255, 255);
@@ -59,25 +66,51 @@ button{
     padding: clamp(6px, 1.5vh, 12px) clamp(10px, 2vw, 16px);
     font-size: clamp(0.8rem, 1.5vw, 1rem);
     margin: 0;   /* gap handles spacing now, not margin */
+    overflow-y: auto;
+    font-weight: bold;
+    font-family:'Inter',system-ui,sans-serif;
 }
-.sentence-builder-space{
-    display: flex;
-    justify-content: center;
-    flex-direction:row ;
-    border-bottom: dashed;
-    border-color: rgb(124, 120, 120);
-    position: relative;
+.top-div{
+    margin-top: 20px;
+    padding: auto;
 
 }
-/* .answer-btns{
-    background-color: black;
+.title-sentence-space{
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'roboto',sans-serif; ;
+    color: gray;
+}
+.description-sentence{
+    margin-bottom:30px;
+    color: gray;
+    font-size: 20px;
+    font-family: 'roboto',sans-serif;
+    opacity: 50%;
+
+}
+
+.translation{
     border-radius: 7px;
     color: white;
-    height: 60px;
-    width: auto;
-    padding: 10px;
+    background-color: black;
+    border: solid;
+    border-width: 2.5px;
+    padding: 1rem;
+}
 
-} */
+
+
+.sentence-builder-space{
+    justify-content: center;
+    flex-direction:row;
+    border-bottom: dashed;
+    border-color: rgb(124, 120, 120);
+
+    top: 30px;
+    left: 1px;
+    margin-top: 100px;
+}
 
 .beneath-arabic{
     display: flex;
