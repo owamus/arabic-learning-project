@@ -66,17 +66,19 @@ async function addSentence() {
 async function CheckTranslation() {
   // function runs when submit clicked
 
+  //html,css elements that sit in horizontal line sit sequencially in order in HTML Markup
   const submitted_answer_btns = document.querySelectorAll(".translation");
   const obj = await getSentence();
   const array_eng_btns = await splitEnglish(obj.english_content);
   const array_submit_btns = Arrays.from(submitted_answer_btns);
 
   if (Arrays.equals(array_eng_btns, array_submit_btns)) {
+    button.classList.add("correct");
+    feedback.textContent = "✓ Correct!";
+  } else {
+    button.classList.add("incorrect");
+    feedback.textContent = "✗ Not quite";
   }
-
-  // submitted_answer_btns.forEach((btn) => //html,css elements that sit in horizontal line sit sequencially in order in HTML Markup
-
-  // );
 }
 
 //Skip button logic

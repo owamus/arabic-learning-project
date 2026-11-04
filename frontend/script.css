@@ -1,153 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-
-body, html {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+body,
+html {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-html, body {
-    min-width: 400px;
+html,
+body {
+  min-width: 400px;
 }
-body, input, button {
-    font-size: var(--Mhs7de);
-    font-family: Arial, sans-serif;
-    color: var(--YLNNHc);
+body,
+input,
+button {
+  font-size: var(--Mhs7de);
+  font-family: Arial, sans-serif;
+  color: var(--YLNNHc);
 }
-body{
-    display: flex;
-    flex-direction: column;
-    padding: 20px 150px;
-    box-sizing: border-box;
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 150px;
+  box-sizing: border-box;
 }
-button{
-    margin: 10px;
-    border-radius: 25px;
-    cursor: pointer;
-    border: none;
-}
-
-.arabic{
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    margin-right: 1px;
-
-}
-#sentence{
-    justify-content: right;
-    display: flex;
-    flex-direction: row;
-    font-family:'Amiri',serif;
-    text-align: right;
-}
-.centered-div{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-end;
-    gap: 8px;
-    width: 80%;
-    margin: 0 auto;
-    flex: 1;              /* takes up remaining space between title and skip/submit buttons */
-    overflow-y: scroll;     /* ONLY this section scrolls if word count is really high — not the whole page */
-    position: relative;
-}
-.answer-btns{
-    background-color: rgb(255, 255, 255);
-    border-radius: 7px;
-    color: rgb(0, 0, 0);
-    height: auto;
-    min-height: 45px;
-    padding: clamp(6px, 1.5vh, 12px) clamp(10px, 2vw, 16px);
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
-    margin: 0;   /* gap handles spacing now, not margin */
-    overflow-y: auto;
-    font-weight: bold;
-    font-family:'Inter',system-ui,sans-serif;
-}
-.top-div{
-    margin-top: 20px;
-    padding: auto;
-
-}
-.title-sentence-space{
-    margin-top: 10px;
-    font-size: 15px;
-    font-family: 'roboto',sans-serif; ;
-    color: gray;
-}
-.description-sentence{
-    margin-bottom:30px;
-    color: gray;
-    font-size: 20px;
-    font-family: 'roboto',sans-serif;
-    opacity: 50%;
-
+button {
+  margin: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
 }
 
-.translation{
-    border-radius: 7px;
-    color: white;
-    background-color: black;
-    border: solid;
-    border-width: 2.5px;
-    padding: 1rem;
+.arabic {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-right: 1px;
+}
+#sentence {
+  justify-content: right;
+  display: flex;
+  flex-direction: row;
+  font-family: "Amiri", serif;
+  text-align: right;
+}
+.centered-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-end;
+  gap: 8px;
+  width: 80%;
+  margin: 0 auto;
+  flex: 1; /* takes up remaining space between title and skip/submit buttons */
+  overflow-y: scroll; /* ONLY this section scrolls if word count is really high — not the whole page */
+  position: relative;
+}
+.answer-btns {
+  background-color: rgb(255, 255, 255);
+  border-radius: 7px;
+  color: rgb(0, 0, 0);
+  height: auto;
+  min-height: 45px;
+  padding: clamp(6px, 1.5vh, 12px) clamp(10px, 2vw, 16px);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  margin: 0; /* gap handles spacing now, not margin */
+  overflow-y: auto;
+  font-weight: bold;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.top-div {
+  margin-top: 20px;
+  padding: auto;
+}
+.title-sentence-space {
+  margin-top: 10px;
+  font-size: 15px;
+  font-family: "roboto", sans-serif;
+  color: gray;
+}
+.description-sentence {
+  margin-bottom: 30px;
+  color: gray;
+  font-size: 20px;
+  font-family: "roboto", sans-serif;
+  opacity: 50%;
 }
 
-
-
-.sentence-builder-space{
-    justify-content: center;
-    flex-direction:row;
-    border-bottom: dashed;
-    border-color: rgb(124, 120, 120);
-
-    top: 30px;
-    left: 1px;
-    margin-top: 100px;
+.translation {
+  border-radius: 7px;
+  color: white;
+  background-color: black;
+  border: solid;
+  border-width: 2.5px;
+  padding: 1rem;
 }
 
-.beneath-arabic{
-    display: flex;
-    flex-direction: row;
+.sentence-builder-space {
+  justify-content: center;
+  flex-direction: row;
+  border-bottom: dashed;
+  border-color: rgb(124, 120, 120);
+
+  top: 30px;
+  left: 1px;
+  margin-top: 100px;
 }
 
-.skip-btn{
-    width: 100px;
-    height: 50px;
-    background-color:rgb(63, 61, 61);
-    color: white;
-    border: none;
+.beneath-arabic {
+  display: flex;
+  flex-direction: row;
+}
+
+.skip-btn {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(63, 61, 61);
+  color: white;
+  border: none;
 }
 
 button:hover {
-    outline: 2px solid whitesmoke;
-    cursor: pointer;
+  outline: 2px solid whitesmoke;
+  cursor: pointer;
 }
-.submitBtn{
-    padding: 20px;
-    width: 500px;
-    border-style: solid;
-    border-width: 1.5px;
-    border-color: rgb(255, 255, 255);
-    border-radius: 15px;
-    font-size: medium;
-    background-color: transparent;
-    color: white;
+.submitBtn {
+  padding: 20px;
+  width: 500px;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  font-size: medium;
+  background-color: transparent;
+  color: white;
+}
+.submitBtn:hover {
+  background-color: rgba(74, 198, 78, 0.76);
+}
+.skip-btn:hover {
+  opacity: 80%;
+}
+.answer-btns:hover {
+  opacity: 50%;
+}
 
+.translation.correct {
+  background: #d1fae5;
+  border-color: #10b981;
+  color: #065f46; /* your .translation text is white, which would vanish on pale green */
 }
-.submitBtn:hover{
-    background-color: rgba(74, 198, 78, 0.76);
+.translation.incorrect {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #991b1b;
+  animation: shake 0.3s;
+}
+button:disabled {
+  cursor: default;
+}
+button:disabled:hover {
+  outline: none;
+}
 
-}
-.skip-btn:hover{
-    opacity: 80%;
-}
-.answer-btns:hover{
-    opacity: 50%;
+@keyframes shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
 }
