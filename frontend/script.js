@@ -4,6 +4,8 @@ async function getSentence() {
   const data = await response.json();
   return data;
 }
+let currentSentence = null; // the sentence on screen right now
+
 //adding english words into buttons
 //ADDING ANSWER BUTTONS
 function add(EnglishWord) {
@@ -17,17 +19,19 @@ function add(EnglishWord) {
   container.appendChild(newSelection);
 }
 
-//splitting the translation into words array, and removing punctuation.
-async function splitEnglish(sentence) {
-  const arrayWords = sentence.split(" ");
+function normalise(word) {
+  return word
+    .replace(/[!"“”#$%&'’‘()*+,\-./:;<=>?@[\]^_`{|}~]/g, "")
+    .toLowerCase()
+    .trim();
+}
 
-  await arrayWords.forEach((element) => {
-    element = element
-      .replace(/[!"“”#$%&'’‘()*+,-./:;<=>?@[\]^_`{|}~]/g, "")
-      .toLowerCase()
-      .trim();
-  });
-  return arrayWords;
+//splitting the translation into words array, and removing punctuation.
+function splitEnglish(sentence) {
+  return sentence
+    .split(" ")
+    .map(normalise)
+    .filter((w) => w.length > 0);
 }
 
 //adding translation buttons for selection on the page
@@ -43,42 +47,51 @@ async function addEnglishBtns(eng_btns) {
 
 //adding arabic sentence and answer buttons to the page
 async function addSentence() {
-  const obj = await getSentence();
-  const arabic = obj.arabic_content;
+  currentSentence = await getSentence(); // saved for the check later
+  document.getElementById("sentence").innerText =
+    currentSentence.arabic_content;
 
-  document.getElementById("sentence").innerText = arabic;
+  addEnglishBtns(splitEnglish(currentSentence.english_content));
 
-  const array_eng_btns = await splitEnglish(obj.english_content); //get the english buttons
-  await addEnglishBtns(array_eng_btns); //add the buttons to the page
-
-  const ans_btn = document.querySelectorAll(".answer-btns");
-
-  ans_btn.forEach((btn) =>
-    btn.addEventListener("click", (event) => {
-      flyTo(btn, "translation", ".sentence-builder-space");
-    }),
-  );
+  document
+    .querySelectorAll(".answer-btns")
+    .forEach((btn) =>
+      btn.addEventListener("click", () =>
+        flyTo(btn, "translation", ".sentence-builder-space"),
+      ),
+    );
 }
+
 //need to combine the words selected, into array, then check array against the actual english translation
 //need to combine words of english translation into array.
 //then we check the order and items match, if so we say correct, if false, we can keep track of the words that were red, and store them as weak words
 //we need to also lock the buttons once, the submit button clicked
-async function CheckTranslation() {
-  // function runs when submit clicked
+function CheckTranslation() {
+  const built = document.querySelectorAll(".translation");
+  const expected = splitEnglish(currentSentence.english_content);
+  const weakWords = [];
 
-  //html,css elements that sit in horizontal line sit sequencially in order in HTML Markup
-  const submitted_answer_btns = document.querySelectorAll(".translation");
-  const obj = await getSentence();
-  const array_eng_btns = await splitEnglish(obj.english_content);
-  const array_submit_btns = Arrays.from(submitted_answer_btns);
+  built.forEach((btn, i) => {
+    const right = normalise(btn.innerText) === expected[i];
+    btn.classList.add(right ? "correct" : "incorrect");
+    if (!right && expected[i]) weakWords.push(expected[i]);
+  });
 
-  if (Arrays.equals(array_eng_btns, array_submit_btns)) {
-    button.classList.add("correct");
-    feedback.textContent = "✓ Correct!";
-  } else {
-    button.classList.add("incorrect");
-    feedback.textContent = "✗ Not quite";
-  }
+  // words they never placed at all
+  for (let i = built.length; i < expected.length; i++)
+    weakWords.push(expected[i]);
+
+  const allCorrect = weakWords.length === 0 && built.length === expected.length;
+  document.getElementById("feedback").textContent = allCorrect
+    ? "✓ Correct!"
+    : "✗ Not quite";
+
+  // lock everything (disabled buttons can't be clicked, so no listeners to remove)
+  document
+    .querySelectorAll(".translation, .answer-btns, .submitBtn")
+    .forEach((b) => (b.disabled = true));
+
+  return weakWords; // store these for your weak-words feature
 }
 
 //Skip button logic
