@@ -78,13 +78,17 @@ function CheckTranslation() {
   });
 
   // words they never placed at all
-  for (let i = built.length; i < expected.length; i++)
+  for (let i = built.length; i < expected.length; i++) {
     weakWords.push(expected[i]);
+  }
 
-  const allCorrect = weakWords.length === 0 && built.length === expected.length;
-  document.getElementById("feedback").textContent = allCorrect
-    ? "✓ Correct!"
-    : "✗ Not quite";
+  const allCorrect = weakWords.length == 0 && built.length == expected.length;
+
+  if (allCorrect) {
+    document.getElementById("feedback").textContent = "✓ Correct!";
+  } else {
+    document.getElementById("feedback").textContent = "✗ Not quite";
+  }
 
   // lock everything (disabled buttons can't be clicked, so no listeners to remove)
   document
@@ -98,7 +102,15 @@ function CheckTranslation() {
 document.querySelector(".skip-btn").addEventListener("click", (event) => {
   document.querySelectorAll(".answer-btns").forEach((btn) => btn.remove());
   document.querySelectorAll(".translation").forEach((btn) => btn.remove());
+  document.getElementById("feedback").textContent = "";
+  document.querySelector(".submitBtn").disabled = false;
   addSentence();
+});
+
+//event listener for submit button
+document.querySelector(".submitBtn").addEventListener("click", () => {
+  if (document.querySelectorAll(".translation").length === 0) return; // nothing built yet
+  CheckTranslation();
 });
 
 addSentence();

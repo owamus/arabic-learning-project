@@ -147,10 +147,14 @@ button:hover {
   opacity: 50%;
 }
 
+#feedback {
+  color: #991b1b;
+}
+
 .translation.correct {
   background: #d1fae5;
   border-color: #10b981;
-  color: #065f46; /* your .translation text is white, which would vanish on pale green */
+  color: #065f46;
 }
 .translation.incorrect {
   background: #fee2e2;
@@ -172,4 +176,15 @@ button:disabled:hover {
   75% {
     transform: translateX(4px);
   }
+}
+
+#feedback {
+  font-weight: bold;
+  min-height: 1.5em;
+}
+#feedback.correct {
+  color: #10b981;
+}
+#feedback.incorrect {
+  color: #ef4444;
 }
