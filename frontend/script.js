@@ -1,6 +1,6 @@
 //fetching the arabic sentence object from db
 async function getSentence() {
-  const response = await fetch("http://localhost:3000/api/?category=تاريخ");
+  const response = await fetch("http://localhost:3000/api/");
   const data = await response.json();
   return data;
 }
@@ -49,9 +49,9 @@ async function addEnglishBtns(eng_btns) {
 async function addSentence() {
   currentSentence = await getSentence(); // saved for the check later
   document.getElementById("sentence").innerText =
-    currentSentence.arabic_content;
+    currentSentence.arabic;
 
-  addEnglishBtns(splitEnglish(currentSentence.english_content));
+  addEnglishBtns(splitEnglish(currentSentence.english));
 
   document
     .querySelectorAll(".answer-btns")
@@ -68,7 +68,7 @@ async function addSentence() {
 //we need to also lock the buttons once, the submit button clicked
 function CheckTranslation() {
   const built = document.querySelectorAll(".translation");
-  const expected = splitEnglish(currentSentence.english_content);
+  const expected = splitEnglish(currentSentence.english);
   const weakWords = [];
 
   built.forEach((btn, i) => {
