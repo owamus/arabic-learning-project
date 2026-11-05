@@ -5,7 +5,7 @@ const client = new Client ({
     port: 5432,
     user:'postgres',
     password:'',
-    database:'myproject',
+    database:'arabic',
     connectionTimeoutMillis: 5000
 });
 
