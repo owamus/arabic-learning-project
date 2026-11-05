@@ -88,6 +88,7 @@ function CheckTranslation() {
   feedback.textContent = allCorrect ? "✓ Correct!" : "✗ Not quite";
   feedback.classList.remove("correct", "incorrect");
   feedback.classList.add(allCorrect ? "correct" : "incorrect");
+  document.querySelector(".skip-btn").textContent = "next question";
 
   // lock everything (disabled buttons can't be clicked, so no listeners to remove)
   document
@@ -104,6 +105,7 @@ document.querySelector(".skip-btn").addEventListener("click", (event) => {
   const feedback = document.getElementById("feedback");
   feedback.textContent = "";
   feedback.classList.remove("correct", "incorrect");
+  document.querySelector(".skip-btn").textContent = "skip";
   document.querySelector(".submitBtn").disabled = false;
   addSentence();
 });
