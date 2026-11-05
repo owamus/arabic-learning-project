@@ -51,25 +51,58 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-end;
-  gap: 8px;
+  gap: 10px;
   width: 80%;
   margin: 0 auto;
-  flex: 1; /* takes up remaining space between title and skip/submit buttons */
-  overflow-y: scroll; /* ONLY this section scrolls if word count is really high — not the whole page */
+  flex: 1;
+  overflow-y: auto; /* was scroll: no empty scrollbar unless it's needed */
   position: relative;
+  padding: 16px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #555 transparent;
 }
+
 .answer-btns {
-  background-color: rgb(255, 255, 255);
-  border-radius: 7px;
-  color: rgb(0, 0, 0);
+  background-color: #fff;
+  color: #111;
+  border: 1px solid #d4d4d4;
+  border-bottom-width: 3px; /* gives each word a "tile" look */
+  border-radius: 10px;
   height: auto;
   min-height: 45px;
-  padding: clamp(6px, 1.5vh, 12px) clamp(10px, 2vw, 16px);
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  margin: 0; /* gap handles spacing now, not margin */
-  overflow-y: auto;
-  font-weight: bold;
+  padding: clamp(6px, 1.5vh, 12px) clamp(12px, 2vw, 18px);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  font-weight: 600;
   font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.answer-btns:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  background-color: #f3f4f6;
+  outline: none; /* cancels your global button:hover outline for these only */
+}
+
+.answer-btns:not(:disabled):active {
+  transform: translateY(1px);
+  border-bottom-width: 1px;
+  box-shadow: none;
+}
+
+.answer-btns:focus-visible {
+  outline: 2px solid #60a5fa; /* keyboard users can see where they are */
+  outline-offset: 2px;
+}
+
+.answer-btns:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 .top-div {
   margin-top: 20px;
