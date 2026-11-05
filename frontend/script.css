@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 body,
@@ -15,15 +14,14 @@ body {
 body,
 input,
 button {
-  font-size: var(--Mhs7de);
   font-family: Arial, sans-serif;
-  color: var(--YLNNHc);
 }
 body {
   display: flex;
   flex-direction: column;
   padding: 20px 150px;
   box-sizing: border-box;
+  color: white;
 }
 button {
   margin: 10px;
@@ -86,6 +84,7 @@ button {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
   background-color: #f3f4f6;
+  opacity: 75%;
   outline: none; /* cancels your global button:hover outline for these only */
 }
 
@@ -106,7 +105,6 @@ button {
 }
 .top-div {
   margin-top: 20px;
-  padding: auto;
 }
 .title-sentence-space {
   margin-top: 10px;
@@ -132,13 +130,8 @@ button {
 }
 
 .sentence-builder-space {
-  justify-content: center;
-  flex-direction: row;
   border-bottom: dashed;
   border-color: rgb(124, 120, 120);
-
-  top: 30px;
-  left: 1px;
   margin-top: 100px;
 }
 
@@ -153,6 +146,7 @@ button {
   background-color: rgb(63, 61, 61);
   color: white;
   border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 button:hover {
@@ -162,6 +156,7 @@ button:hover {
 .submitBtn {
   padding: 20px;
   width: 500px;
+  max-width: 100%;
   border-style: solid;
   border-width: 1.5px;
   border-color: rgb(255, 255, 255);
@@ -169,19 +164,13 @@ button:hover {
   font-size: medium;
   background-color: transparent;
   color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 .submitBtn:hover {
   background-color: rgba(74, 198, 78, 0.76);
 }
 .skip-btn:hover {
   opacity: 80%;
-}
-.answer-btns:hover {
-  opacity: 50%;
-}
-
-#feedback {
-  color: #991b1b;
 }
 
 .translation.correct {
@@ -212,6 +201,7 @@ button:disabled:hover {
 }
 
 #feedback {
+  color: #991b1b;
   font-weight: bold;
   min-height: 1.5em;
 }
