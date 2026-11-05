@@ -1,0 +1,101 @@
+id,arabic,arabic_plain,english,level,topic,word_count,source
+1,أَنَا طَالِبٌ فِي الْجَامِعَةِ.,أنا طالب في الجامعة.,I am a student at the university.,A1,study,4,ai_generated
+2,هَذَا كِتَابٌ جَدِيدٌ.,هذا كتاب جديد.,This is a new book.,A1,study,3,ai_generated
+3,اسْمِي أَحْمَدُ.,اسمي أحمد.,My name is Ahmad.,A1,daily_life,2,ai_generated
+4,أَيْنَ الْمَطْعَمُ؟,أين المطعم؟,Where is the restaurant?,A1,travel,2,ai_generated
+5,هِيَ مُعَلِّمَةٌ جَيِّدَةٌ.,هي معلمة جيدة.,She is a good teacher.,A1,work,3,ai_generated
+6,عِنْدِي أَخٌ وَأُخْتٌ.,عندي أخ وأخت.,I have a brother and a sister.,A1,family,3,ai_generated
+7,الْبَيْتُ كَبِيرٌ.,البيت كبير.,The house is big.,A1,daily_life,2,ai_generated
+8,أُحِبُّ الْقَهْوَةَ.,أحب القهوة.,I like coffee.,A1,food,2,ai_generated
+9,الطَّقْسُ حَارٌّ الْيَوْمَ.,الطقس حار اليوم.,The weather is hot today.,A1,weather,3,ai_generated
+10,أَشْرَبُ الْمَاءَ.,أشرب الماء.,I drink water.,A1,food,2,ai_generated
+11,هَذِهِ سَيَّارَةٌ صَغِيرَةٌ.,هذه سيارة صغيرة.,This is a small car.,A1,daily_life,3,ai_generated
+12,أَبِي طَبِيبٌ.,أبي طبيب.,My father is a doctor.,A1,family,2,ai_generated
+13,نَحْنُ فِي الْمَدْرَسَةِ.,نحن في المدرسة.,We are at school.,A1,study,3,ai_generated
+14,الْوَلَدُ يَلْعَبُ فِي الْحَدِيقَةِ.,الولد يلعب في الحديقة.,The boy is playing in the park.,A1,daily_life,4,ai_generated
+15,أَيْنَ مَفَاتِيحِي؟,أين مفاتيحي؟,Where are my keys?,A1,daily_life,2,ai_generated
+16,هَلْ أَنْتَ جَائِعٌ؟,هل أنت جائع؟,Are you hungry?,A1,food,3,ai_generated
+17,أَنَا مِنْ مِصْرَ.,أنا من مصر.,I am from Egypt.,A1,daily_life,3,ai_generated
+18,الْكِتَابُ عَلَى الطَّاوِلَةِ.,الكتاب على الطاولة.,The book is on the table.,A1,daily_life,3,ai_generated
+19,أُرِيدُ كُوبًا مِنَ الشَّايِ.,أريد كوبا من الشاي.,I want a cup of tea.,A1,food,4,ai_generated
+20,صَبَاحُ الْخَيْرِ، كَيْفَ حَالُكَ؟,صباح الخير، كيف حالك؟,"Good morning, how are you?",A1,daily_life,4,ai_generated
+21,أَذْهَبُ إِلَى السُّوقِ مَعَ أُمِّي كُلَّ يَوْمِ جُمُعَةٍ.,أذهب إلى السوق مع أمي كل يوم جمعة.,I go to the market with my mother every Friday.,A2,shopping,8,ai_generated
+22,ذَهَبْتُ إِلَى الْمَكْتَبَةِ أَمْسِ لِأَقْرَأَ كِتَابًا.,ذهبت إلى المكتبة أمس لأقرأ كتابا.,I went to the library yesterday to read a book.,A2,study,6,ai_generated
+23,يَسْكُنُ صَدِيقِي فِي شَقَّةٍ صَغِيرَةٍ قَرِيبَةٍ مِنَ الْجَامِعَةِ.,يسكن صديقي في شقة صغيرة قريبة من الجامعة.,My friend lives in a small apartment near the university.,A2,daily_life,8,ai_generated
+24,أَسْتَيْقِظُ كُلَّ صَبَاحٍ فِي السَّاعَةِ السَّابِعَةِ.,أستيقظ كل صباح في الساعة السابعة.,I wake up every morning at seven o'clock.,A2,daily_life,6,ai_generated
+25,هَلْ تُرِيدُ أَنْ تَأْكُلَ مَعَنَا فِي الْمَطْعَمِ؟,هل تريد أن تأكل معنا في المطعم؟,Do you want to eat with us at the restaurant?,A2,food,7,ai_generated
+26,سَافَرَتْ عَائِلَتِي إِلَى الْأُرْدُنِّ فِي الصَّيْفِ الْمَاضِي.,سافرت عائلتي إلى الأردن في الصيف الماضي.,My family traveled to Jordan last summer.,A2,travel,7,ai_generated
+27,فِي الشِّتَاءِ يَكُونُ الْجَوُّ بَارِدًا وَمُمْطِرًا.,في الشتاء يكون الجو باردا وممطرا.,In winter the weather is cold and rainy.,A2,weather,6,ai_generated
+28,اشْتَرَيْتُ قَمِيصًا أَزْرَقَ مِنَ الْمَحَلِّ.,اشتريت قميصا أزرق من المحل.,I bought a blue shirt from the shop.,A2,shopping,5,ai_generated
+29,أُخْتِي الصَّغِيرَةُ تَدْرُسُ الطِّبَّ فِي الْجَامِعَةِ.,أختي الصغيرة تدرس الطب في الجامعة.,My younger sister studies medicine at the university.,A2,study,6,ai_generated
+30,يَعْمَلُ وَالِدِي فِي مَصْنَعٍ كَبِيرٍ مُنْذُ عَشْرِ سَنَوَاتٍ.,يعمل والدي في مصنع كبير منذ عشر سنوات.,My father has worked in a big factory for ten years.,A2,work,8,ai_generated
+31,لَا أُحِبُّ الْقَهْوَةَ بِدُونِ سُكَّرٍ.,لا أحب القهوة بدون سكر.,I don't like coffee without sugar.,A2,food,5,ai_generated
+32,كَمْ ثَمَنُ هَذِهِ الْحَقِيبَةِ؟,كم ثمن هذه الحقيبة؟,How much is this bag?,A2,shopping,4,ai_generated
+33,تَعَلَّمْتُ الْعَرَبِيَّةَ فِي الْمَدْرَسَةِ لِمُدَّةِ سَنَتَيْنِ.,تعلمت العربية في المدرسة لمدة سنتين.,I studied Arabic at school for two years.,A2,study,6,ai_generated
+34,الْمَطَارُ بَعِيدٌ عَنْ وَسَطِ الْمَدِينَةِ.,المطار بعيد عن وسط المدينة.,The airport is far from the city center.,A2,travel,5,ai_generated
+35,يَجِبُ أَنْ تَشْرَبَ مَاءً كَثِيرًا فِي الطَّقْسِ الْحَارِّ.,يجب أن تشرب ماء كثيرا في الطقس الحار.,You must drink a lot of water in hot weather.,A2,health,8,ai_generated
+36,كَانَ الْفِيلْمُ طَوِيلًا، وَلَكِنَّهُ كَانَ مُمْتِعًا.,كان الفيلم طويلا، ولكنه كان ممتعا.,"The film was long, but it was enjoyable.",A2,daily_life,6,ai_generated
+37,سَأَزُورُ جَدَّتِي فِي نِهَايَةِ الْأُسْبُوعِ.,سأزور جدتي في نهاية الأسبوع.,I will visit my grandmother at the end of the week.,A2,family,5,ai_generated
+38,هَلْ يُمْكِنُنِي أَنْ أَجْلِسَ هُنَا؟,هل يمكنني أن أجلس هنا؟,May I sit here?,A2,daily_life,5,ai_generated
+39,أَشْعُرُ بِصُدَاعٍ، لِذَلِكَ سَأَذْهَبُ إِلَى الطَّبِيبِ.,أشعر بصداع، لذلك سأذهب إلى الطبيب.,"I have a headache, so I will go to the doctor.",A2,health,6,ai_generated
+40,يُحِبُّ إِخْوَتِي لَعِبَ كُرَةِ الْقَدَمِ بَعْدَ الْمَدْرَسَةِ.,يحب إخوتي لعب كرة القدم بعد المدرسة.,My brothers like playing football after school.,A2,daily_life,7,ai_generated
+41,وَصَلَ الْقِطَارُ مُتَأَخِّرًا نِصْفَ سَاعَةٍ.,وصل القطار متأخرا نصف ساعة.,The train arrived half an hour late.,A2,travel,5,ai_generated
+42,فِي غُرْفَتِي سَرِيرٌ وَمَكْتَبٌ وَنَافِذَةٌ كَبِيرَةٌ.,في غرفتي سرير ومكتب ونافذة كبيرة.,"In my room there is a bed, a desk and a big window.",A2,daily_life,6,ai_generated
+43,نَسِيتُ هَاتِفِي فِي السَّيَّارَةِ.,نسيت هاتفي في السيارة.,I forgot my phone in the car.,A2,technology,4,ai_generated
+44,تُفَضِّلُ أُمِّي الْخُضَارَ عَلَى اللَّحْمِ.,تفضل أمي الخضار على اللحم.,My mother prefers vegetables to meat.,A2,food,5,ai_generated
+45,أَرْسَلْتُ رِسَالَةً إِلَى زَمِيلِي لِأَسْأَلَهُ عَنِ الْوَاجِبِ.,أرسلت رسالة إلى زميلي لأسأله عن الواجب.,I sent a message to my classmate to ask him about the homework.,A2,study,7,ai_generated
+46,الْمَحَلُّ مَفْتُوحٌ مِنَ التَّاسِعَةِ صَبَاحًا حَتَّى الْعَاشِرَةِ لَيْلًا.,المحل مفتوح من التاسعة صباحا حتى العاشرة ليلا.,The shop is open from nine in the morning until ten at night.,A2,shopping,8,ai_generated
+47,مَاذَا فَعَلْتَ فِي الْعُطْلَةِ؟,ماذا فعلت في العطلة؟,What did you do on the holiday?,A2,travel,4,ai_generated
+48,تَعِبْتُ كَثِيرًا الْيَوْمَ لِأَنَّنِي عَمِلْتُ طَوَالَ النَّهَارِ.,تعبت كثيرا اليوم لأنني عملت طوال النهار.,I am very tired today because I worked all day.,A2,work,7,ai_generated
+49,يَتَكَلَّمُ مُدِيرُنَا اللُّغَةَ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّةَ.,يتكلم مديرنا اللغة العربية والإنجليزية.,Our manager speaks Arabic and English.,A2,work,5,ai_generated
+50,فِي الْمَسَاءِ نَمْشِي قَلِيلًا فِي الْحَيِّ قَبْلَ الْعَشَاءِ.,في المساء نمشي قليلا في الحي قبل العشاء.,In the evening we walk a little around the neighborhood before dinner.,A2,daily_life,8,ai_generated
+51,لَمْ أَسْتَطِعْ أَنْ أَنَامَ لِأَنَّ الْجَوَّ كَانَ حَارًّا جِدًّا.,لم أستطع أن أنام لأن الجو كان حارا جدا.,I couldn't sleep because the weather was very hot.,B1,weather,9,ai_generated
+52,يَعْتَقِدُ كَثِيرٌ مِنَ النَّاسِ أَنَّ تَعَلُّمَ لُغَةٍ جَدِيدَةٍ يَحْتَاجُ إِلَى سَنَوَاتٍ طَوِيلَةٍ.,يعتقد كثير من الناس أن تعلم لغة جديدة يحتاج إلى سنوات طويلة.,Many people believe that learning a new language takes many years.,B1,study,12,ai_generated
+53,إِذَا دَرَسْتَ بِانْتِظَامٍ فَسَوْفَ تَنْجَحُ فِي الِامْتِحَانِ.,إذا درست بانتظام فسوف تنجح في الامتحان.,"If you study regularly, you will pass the exam.",B1,study,7,ai_generated
+54,كُنْتُ أَلْعَبُ فِي الْحَدِيقَةِ كُلَّ يَوْمٍ عِنْدَمَا كُنْتُ صَغِيرًا.,كنت ألعب في الحديقة كل يوم عندما كنت صغيرا.,I used to play in the park every day when I was little.,B1,daily_life,9,ai_generated
+55,قَرَّرْتُ أَنْ أَنْتَقِلَ إِلَى مَدِينَةٍ أُخْرَى لِأَنَّ فُرَصَ الْعَمَلِ هُنَاكَ أَفْضَلُ.,قررت أن أنتقل إلى مدينة أخرى لأن فرص العمل هناك أفضل.,I decided to move to another city because job opportunities there are better.,B1,work,11,ai_generated
+56,الشَّخْصُ الَّذِي تَحَدَّثْتَ مَعَهُ أَمْسِ هُوَ مُدِيرُ الشَّرِكَةِ.,الشخص الذي تحدثت معه أمس هو مدير الشركة.,The person you spoke with yesterday is the company's manager.,B1,work,8,ai_generated
+57,مِنَ الْمُهِمِّ أَنْ نَأْكُلَ طَعَامًا صِحِّيًّا وَأَنْ نُمَارِسَ الرِّيَاضَةَ.,من المهم أن نأكل طعاما صحيا وأن نمارس الرياضة.,It is important that we eat healthy food and exercise.,B1,health,9,ai_generated
+58,بَعْدَ أَنِ انْتَهَيْتُ مِنَ الدِّرَاسَةِ، بَدَأْتُ أَبْحَثُ عَنْ وَظِيفَةٍ.,بعد أن انتهيت من الدراسة، بدأت أبحث عن وظيفة.,"After I finished studying, I started looking for a job.",B1,work,9,ai_generated
+59,تُسَاعِدُنِي التَّطْبِيقَاتُ الْحَدِيثَةُ عَلَى تَنْظِيمِ وَقْتِي.,تساعدني التطبيقات الحديثة على تنظيم وقتي.,Modern apps help me organize my time.,B1,technology,6,ai_generated
+60,لَوْ كَانَ عِنْدِي وَقْتٌ أَكْثَرُ لَسَافَرْتُ إِلَى أُورُبَّا.,لو كان عندي وقت أكثر لسافرت إلى أوربا.,"If I had more time, I would travel to Europe.",B1,travel,8,ai_generated
+61,زُرْنَا الْمَتْحَفَ الَّذِي يَقَعُ فِي وَسَطِ الْمَدِينَةِ الْقَدِيمَةِ.,زرنا المتحف الذي يقع في وسط المدينة القديمة.,We visited the museum that is located in the middle of the old city.,B1,travel,8,ai_generated
+62,أُفَضِّلُ الْعَمَلَ فِي فَرِيقٍ لِأَنَّهُ يُتِيحُ لِي تَبَادُلَ الْأَفْكَارِ.,أفضل العمل في فريق لأنه يتيح لي تبادل الأفكار.,I prefer working in a team because it allows me to exchange ideas.,B1,work,9,ai_generated
+63,لَمْ يَصِلِ الطَّلَبُ بَعْدُ، فَاتَّصَلْتُ بِالشَّرِكَةِ لِأَعْرِفَ السَّبَبَ.,لم يصل الطلب بعد، فاتصلت بالشركة لأعرف السبب.,"The order hasn't arrived yet, so I called the company to find out the reason.",B1,shopping,8,ai_generated
+64,كَانَ عَلَيَّ أَنْ أَسْتَيْقِظَ مُبَكِّرًا لِأَلْحَقَ بِالْحَافِلَةِ.,كان علي أن أستيقظ مبكرا لألحق بالحافلة.,I had to wake up early to catch the bus.,B1,daily_life,7,ai_generated
+65,تَعَلَّمْتُ مِنْ أَخْطَائِي أَنَّ التَّحْضِيرَ الْجَيِّدَ سِرُّ النَّجَاحِ.,تعلمت من أخطائي أن التحضير الجيد سر النجاح.,I learned from my mistakes that good preparation is the secret of success.,B1,study,8,ai_generated
+66,كُلَّمَا قَرَأْتُ أَكْثَرَ ازْدَادَ فَهْمِي لِلُّغَةِ.,كلما قرأت أكثر ازداد فهمي للغة.,"The more I read, the more my understanding of the language grows.",B1,study,6,ai_generated
+67,يَشْتَكِي الْكَثِيرُونَ مِنَ الزِّحَامِ فِي الشَّوَارِعِ صَبَاحًا.,يشتكي الكثيرون من الزحام في الشوارع صباحا.,Many people complain about the traffic in the streets in the morning.,B1,society,7,ai_generated
+68,لَا أَعْرِفُ كَيْفَ أَسْتَخْدِمُ هَذَا الْبَرْنَامَجَ، فَهَلْ تُسَاعِدُنِي؟,لا أعرف كيف أستخدم هذا البرنامج، فهل تساعدني؟,"I don't know how to use this program, so could you help me?",B1,technology,8,ai_generated
+69,خَرَجْنَا لِلتَّنَزُّهِ عَلَى الرَّغْمِ مِنَ الْبَرْدِ.,خرجنا للتنزه على الرغم من البرد.,We went out for a walk despite the cold.,B1,weather,6,ai_generated
+70,اتَّفَقْنَا عَلَى أَنْ نَلْتَقِيَ أَمَامَ الْمَسْرَحِ قَبْلَ بَدْءِ الْعَرْضِ.,اتفقنا على أن نلتقي أمام المسرح قبل بدء العرض.,We agreed to meet in front of the theater before the show starts.,B1,daily_life,9,ai_generated
+71,أَخْبَرَنِي الطَّبِيبُ أَنَّ عَلَيَّ أَنْ أَنَامَ ثَمَانِيَ سَاعَاتٍ كُلَّ لَيْلَةٍ.,أخبرني الطبيب أن علي أن أنام ثماني ساعات كل ليلة.,The doctor told me that I should sleep eight hours every night.,B1,health,10,ai_generated
+72,تَفَاجَأْتُ عِنْدَمَا عَلِمْتُ أَنَّ صَدِيقِي قَدْ تَرَكَ وَظِيفَتَهُ.,تفاجأت عندما علمت أن صديقي قد ترك وظيفته.,I was surprised when I learned that my friend had quit his job.,B1,work,8,ai_generated
+73,يُمْكِنُكَ أَنْ تَدْفَعَ نَقْدًا أَوْ بِالْبِطَاقَةِ الْمَصْرِفِيَّةِ.,يمكنك أن تدفع نقدا أو بالبطاقة المصرفية.,You can pay in cash or by bank card.,B1,shopping,7,ai_generated
+74,سَوْفَ يَبْدَأُ الْمُؤْتَمَرُ بَعْدَ أُسْبُوعَيْنِ فِي الْعَاصِمَةِ.,سوف يبدأ المؤتمر بعد أسبوعين في العاصمة.,The conference will begin in two weeks in the capital.,B1,work,7,ai_generated
+75,الْكِتَابُ الَّذِي أَقْرَؤُهُ الْآنَ يَتَحَدَّثُ عَنْ تَارِيخِ الْأَنْدَلُسِ.,الكتاب الذي أقرؤه الآن يتحدث عن تاريخ الأندلس.,The book I am reading now talks about the history of Andalusia.,B1,study,8,ai_generated
+76,فَضَّلَتْ أُخْتِي الْبَقَاءَ فِي الْبَيْتِ لِأَنَّهَا كَانَتْ مُتْعَبَةً.,فضلت أختي البقاء في البيت لأنها كانت متعبة.,My sister preferred to stay at home because she was tired.,B1,family,8,ai_generated
+77,عَلَيْنَا أَنْ نُقَلِّلَ مِنِ اسْتِهْلَاكِ الْكَهْرَبَاءِ لِتَوْفِيرِ الْمَالِ.,علينا أن نقلل من استهلاك الكهرباء لتوفير المال.,We should reduce electricity consumption to save money.,B1,environment,8,ai_generated
+78,بَعْضُ الطُّلَّابِ يُفَضِّلُونَ الدِّرَاسَةَ فِي الصَّبَاحِ، وَآخَرُونَ فِي اللَّيْلِ.,بعض الطلاب يفضلون الدراسة في الصباح، وآخرون في الليل.,"Some students prefer studying in the morning, and others at night.",B1,study,9,ai_generated
+79,لَمْ أَكُنْ أَعْرِفُ أَنَّ الْمَدِينَةَ جَمِيلَةٌ إِلَى هَذَا الْحَدِّ.,لم أكن أعرف أن المدينة جميلة إلى هذا الحد.,I didn't know the city was this beautiful.,B1,travel,9,ai_generated
+80,يَنْتَشِرُ الْإِنْتَرْنِتُ بِسُرْعَةٍ فِي الْقُرَى الْبَعِيدَةِ.,ينتشر الإنترنت بسرعة في القرى البعيدة.,The internet is spreading quickly in remote villages.,B1,technology,6,ai_generated
+81,لَوْ كُنْتُ أَعْلَمُ أَنَّ الِاجْتِمَاعَ سَيَتَأَخَّرُ، لَمَا أَسْرَعْتُ إِلَى الْمَكْتَبِ.,لو كنت أعلم أن الاجتماع سيتأخر، لما أسرعت إلى المكتب.,"If I had known the meeting would be delayed, I wouldn't have rushed to the office.",B2,work,10,ai_generated
+82,عَلَى الرَّغْمِ مِنْ أَنَّ الِامْتِحَانَ كَانَ صَعْبًا، فَقَدْ نَجَحَ مُعْظَمُ الطُّلَّابِ.,على الرغم من أن الامتحان كان صعبا، فقد نجح معظم الطلاب.,"Although the exam was difficult, most of the students passed.",B2,study,11,ai_generated
+83,أَدَّتِ التِّكْنُولُوجِيَا الْحَدِيثَةُ إِلَى تَغْيِيرِ طَرِيقَةِ تَوَاصُلِنَا مَعَ الْآخَرِينَ بِشَكْلٍ جَذْرِيٍّ.,أدت التكنولوجيا الحديثة إلى تغيير طريقة تواصلنا مع الآخرين بشكل جذري.,Modern technology has radically changed the way we communicate with others.,B2,technology,11,ai_generated
+84,يَنْبَغِي لَنَا أَنْ نُحَافِظَ عَلَى الْبِيئَةِ حَتَّى لَا تَتَضَرَّرَ الْأَجْيَالُ الْقَادِمَةُ.,ينبغي لنا أن نحافظ على البيئة حتى لا تتضرر الأجيال القادمة.,We should protect the environment so that future generations are not harmed.,B2,environment,11,ai_generated
+85,مِنَ الصَّعْبِ عَلَى الْمُسَافِرِ أَنْ يَتَأَقْلَمَ مَعَ عَادَاتٍ جَدِيدَةٍ فِي الْأَسَابِيعِ الْأُولَى.,من الصعب على المسافر أن يتأقلم مع عادات جديدة في الأسابيع الأولى.,It is difficult for a traveler to adapt to new customs in the first weeks.,B2,travel,12,ai_generated
+86,لَوْلَا دَعْمُ أَسْرَتِي لَمَا تَمَكَّنْتُ مِنْ إِكْمَالِ دِرَاسَتِي.,لولا دعم أسرتي لما تمكنت من إكمال دراستي.,"Had it not been for my family's support, I would not have been able to complete my studies.",B2,family,8,ai_generated
+87,تُشِيرُ الدِّرَاسَاتُ الْحَدِيثَةُ إِلَى أَنَّ قِلَّةَ النَّوْمِ تُؤَثِّرُ سَلْبًا فِي التَّرْكِيزِ وَالذَّاكِرَةِ.,تشير الدراسات الحديثة إلى أن قلة النوم تؤثر سلبا في التركيز والذاكرة.,Recent studies indicate that lack of sleep negatively affects concentration and memory.,B2,health,12,ai_generated
+88,لَا يَكْفِي أَنْ تَمْلِكَ مَهَارَاتٍ تِقْنِيَّةً، بَلْ يَجِبُ أَنْ تُجِيدَ التَّوَاصُلَ مَعَ الْفَرِيقِ أَيْضًا.,لا يكفي أن تملك مهارات تقنية، بل يجب أن تجيد التواصل مع الفريق أيضا.,It is not enough to have technical skills; you must also communicate well with the team.,B2,work,14,ai_generated
+89,كَانَ مِنَ الْمُفْتَرَضِ أَنْ تَصِلَ الشَّحْنَةُ أَمْسِ، غَيْرَ أَنَّهَا لَمْ تَصِلْ حَتَّى الْآنَ.,كان من المفترض أن تصل الشحنة أمس، غير أنها لم تصل حتى الآن.,"The shipment was supposed to arrive yesterday, but it has not arrived yet.",B2,shopping,13,ai_generated
+90,يَرَى بَعْضُ الْخُبَرَاءِ أَنَّ الْعَمَلَ عَنْ بُعْدٍ يَزِيدُ الْإِنْتَاجِيَّةَ، بَيْنَمَا يَرَى آخَرُونَ أَنَّهُ يُضْعِفُ رُوحَ الْفَرِيقِ.,يرى بعض الخبراء أن العمل عن بعد يزيد الإنتاجية، بينما يرى آخرون أنه يضعف روح الفريق.,"Some experts think remote work increases productivity, while others think it weakens team spirit.",B2,work,16,ai_generated
+91,بِقَدْرِ مَا أُحِبُّ السَّفَرَ، أَكْرَهُ الْإِجْرَاءَاتِ الطَّوِيلَةَ فِي الْمَطَارَاتِ.,بقدر ما أحب السفر، أكره الإجراءات الطويلة في المطارات.,"As much as I love travel, I hate the long procedures at airports.",B2,travel,9,ai_generated
+92,لَمْ يَكُنِ الْقَرَارُ سَهْلًا، إِذْ تَطَلَّبَ مِنِّي التَّضْحِيَةَ بِوَقْتٍ طَوِيلٍ مَعَ عَائِلَتِي.,لم يكن القرار سهلا، إذ تطلب مني التضحية بوقت طويل مع عائلتي.,"The decision was not easy, as it required me to sacrifice a lot of time with my family.",B2,family,12,ai_generated
+93,تَسْعَى الْحُكُومَةُ إِلَى تَقْلِيلِ التَّلَوُّثِ مِنْ خِلَالِ تَشْجِيعِ النَّاسِ عَلَى اسْتِخْدَامِ وَسَائِلِ النَّقْلِ الْعَامِّ.,تسعى الحكومة إلى تقليل التلوث من خلال تشجيع الناس على استخدام وسائل النقل العام.,The government seeks to reduce pollution by encouraging people to use public transport.,B2,environment,14,ai_generated
+94,حِينَ تَعَلَّمَ الطَّالِبُ مِنْ أَخْطَائِهِ، أَصْبَحَ أَكْثَرَ ثِقَةً بِنَفْسِهِ وَأَقْدَرَ عَلَى حَلِّ الْمَشَاكِلِ.,حين تعلم الطالب من أخطائه، أصبح أكثر ثقة بنفسه وأقدر على حل المشاكل.,"When the student learned from his mistakes, he became more confident and better able to solve problems.",B2,study,13,ai_generated
+95,مَهْمَا حَاوَلْتَ إِرْضَاءَ الْجَمِيعِ، فَلَنْ تَنْجَحَ فِي ذَلِكَ أَبَدًا.,مهما حاولت إرضاء الجميع، فلن تنجح في ذلك أبدا.,"However much you try to please everyone, you will never succeed at it.",B2,society,9,ai_generated
+96,ازْدَادَتِ الْحَاجَةُ إِلَى الْمُبَرْمِجِينَ فِي السَّنَوَاتِ الْأَخِيرَةِ بَعْدَ أَنِ انْتَشَرَتِ الْخَدَمَاتُ الرَّقْمِيَّةُ.,ازدادت الحاجة إلى المبرمجين في السنوات الأخيرة بعد أن انتشرت الخدمات الرقمية.,The need for programmers has grown in recent years after digital services spread.,B2,technology,12,ai_generated
+97,يُقَالُ إِنَّ مَنْ يَقْرَأُ كَثِيرًا يَكْتَسِبُ مُفْرَدَاتٍ جَدِيدَةً دُونَ أَنْ يَشْعُرَ بِذَلِكَ.,يقال إن من يقرأ كثيرا يكتسب مفردات جديدة دون أن يشعر بذلك.,It is said that whoever reads a lot acquires new vocabulary without realizing it.,B2,study,12,ai_generated
+98,أَصْبَحَتِ الْمُدُنُ الْكَبِيرَةُ تُعَانِي مِنِ ارْتِفَاعِ تَكَالِيفِ السَّكَنِ، مِمَّا يَدْفَعُ الشَّبَابَ إِلَى الْعَيْشِ بَعِيدًا عَنْ أَهْلِهِمْ.,أصبحت المدن الكبيرة تعاني من ارتفاع تكاليف السكن، مما يدفع الشباب إلى العيش بعيدا عن أهلهم.,"Big cities have come to suffer from rising housing costs, which pushes young people to live far from their families.",B2,society,16,ai_generated
+99,كَانَ يَنْبَغِي أَنْ أَسْتَشِيرَ خَبِيرًا قَبْلَ أَنْ أَتَّخِذَ هَذَا الْقَرَارَ الْمُهِمَّ.,كان ينبغي أن أستشير خبيرا قبل أن أتخذ هذا القرار المهم.,I should have consulted an expert before making this important decision.,B2,work,11,ai_generated
+100,لَيْسَتِ السَّعَادَةُ فِي امْتِلَاكِ الْأَشْيَاءِ بِقَدْرِ مَا هِيَ فِي الِاسْتِمْتَاعِ بِاللَّحَظَاتِ الْبَسِيطَةِ.,ليست السعادة في امتلاك الأشياء بقدر ما هي في الاستمتاع باللحظات البسيطة.,Happiness lies not so much in owning things as in enjoying simple moments.,B2,society,12,ai_generated

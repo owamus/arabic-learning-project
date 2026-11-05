@@ -1,0 +1,14 @@
+{
+  "name": "arabic-sentence-loader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Loads the Arabic sentence CSV into PostgreSQL",
+  "scripts": {
+    "load": "node load.js"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "pg": "^8.11.5"
+  }
+}
