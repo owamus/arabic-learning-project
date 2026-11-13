@@ -1,11 +1,3 @@
-// Loads arabic_sentences.csv into Postgres (sentences, words, sentence_words).
-//
-// Usage:
-//   DATABASE_URL=postgres://user:pass@localhost:5432/arabic node load.js [path/to/file.csv]
-//
-// Safe to re-run: sentences are deduplicated on arabic_plain, words on word.
-// Everything runs in one transaction, so a failure leaves the database untouched.
-
 import fs from "fs";
 import path from "path";
 import pg from "pg";
@@ -25,8 +17,7 @@ const REQUIRED_COLUMNS = [
   "source",
 ];
 
-// Split a plain Arabic sentence into word tokens, dropping punctuation
-// (including Arabic ، ؟ ؛). Anything that isn't a letter or digit is removed.
+// getting rid of the punctuation (including Arabic ، ؟ ؛) if its not a letter or num its removed
 function tokenize(plain) {
   return plain
     .split(/\s+/)
@@ -48,9 +39,12 @@ async function main() {
   });
 
   if (rows.length === 0) throw new Error(`No rows found in ${csvPath}`);
+
   const missing = REQUIRED_COLUMNS.filter((c) => !(c in rows[0]));
-  if (missing.length)
+
+  if (missing.length) {
     throw new Error(`CSV is missing columns: ${missing.join(", ")}`);
+  }
 
   const client = new Client({ connectionString: process.env.DATABASE_URL });
   await client.connect();

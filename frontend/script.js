@@ -61,6 +61,71 @@ async function addSentence() {
     );
 }
 
+//---- weak words storage (localStorage) ----
+const WEAK_KEY = "weakWords";
+const LEVELS = ["easy", "medium", "hard"];
+
+function loadWeakWords() {
+  try {
+    return JSON.parse(localStorage.getItem(WEAK_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+// saves (or overwrites) a word with its perceived confidence + the sentence it came from
+function saveWeakWord(word, confidence) {
+  const all = loadWeakWords();
+  all[word] = {
+    word,
+    confidence,
+    arabic: currentSentence.arabic,
+    english: currentSentence.english,
+    updated: Date.now(),
+  };
+  localStorage.setItem(WEAK_KEY, JSON.stringify(all));
+}
+
+//shows each missed word with easy / medium / hard buttons
+function showConfidencePicker(words) {
+  const panel = document.getElementById("confidence-panel");
+  panel.innerHTML = "";
+  if (words.length === 0) return;
+
+  const title = document.createElement("p");
+  title.className = "confidence-title";
+  title.textContent = "How confident are you with these words?";
+  panel.appendChild(title);
+
+  words.forEach((word) => {
+    const row = document.createElement("div");
+    row.className = "confidence-row";
+
+    const label = document.createElement("span");
+    label.className = "confidence-word";
+    label.textContent = word;
+    row.appendChild(label);
+
+    LEVELS.forEach((level) => {
+      const btn = document.createElement("button");
+      btn.className = "confidence-btn " + level;
+      btn.textContent = level;
+      btn.addEventListener("click", () => {
+        saveWeakWord(word, level);
+        row
+          .querySelectorAll(".confidence-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      });
+      row.appendChild(btn);
+    });
+
+    panel.appendChild(row);
+  });
+
+  panel.hidden = false;
+}
+
 //need to combine the words selected, into array, then check array against the actual english translation
 //need to combine words of english translation into array.
 //then we check the order and items match, if so we say correct, if false, we can keep track of the words that were red, and store them as weak words
@@ -96,6 +161,9 @@ function CheckTranslation() {
     answerEl.hidden = false;
   }
 
+  // let the user rate how confident they are with each missed word
+  if (!allCorrect) showConfidencePicker([...new Set(weakWords)]);
+
   // lock everything (disabled buttons can't be clicked, so no listeners to remove)
   document
     .querySelectorAll(".translation, .answer-btns, .submitBtn")
@@ -114,6 +182,9 @@ document.querySelector(".skip-btn").addEventListener("click", (event) => {
   const answerEl = document.getElementById("correct-answer");
   answerEl.textContent = "";
   answerEl.hidden = true;
+  const panel = document.getElementById("confidence-panel");
+  panel.innerHTML = "";
+  panel.hidden = true;
   document.querySelector(".skip-btn").textContent = "skip";
   document.querySelector(".submitBtn").disabled = false;
   addSentence();

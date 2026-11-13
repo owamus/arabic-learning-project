@@ -216,3 +216,92 @@ button:disabled:hover {
   color: #fbbf24;
   font-weight: bold;
 }
+
+/* confidence picker */
+#confidence-panel {
+  margin: 1em auto;
+  max-width: 600px;
+  color: white;
+}
+.confidence-title {
+  font-weight: bold;
+}
+.confidence-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0.4em 0;
+}
+.confidence-word {
+  min-width: 6em;
+  font-weight: bold;
+  color: white;
+}
+.confidence-btn {
+  padding: 0.3em 0.8em;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.confidence-btn.easy,
+.confidence-badge.easy {
+  background: #10b981;
+}
+.confidence-btn.medium,
+.confidence-badge.medium {
+  background: #fbbf24;
+}
+.confidence-btn.hard,
+.confidence-badge.hard {
+  background: #ef4444;
+}
+.confidence-btn.selected {
+  opacity: 1;
+  border-color: white;
+}
+
+/* weak words page */
+.weak-link {
+  display: inline-block;
+  margin: 1em;
+  color: #93c5fd;
+}
+.weak-heading {
+  color: white;
+  text-align: center;
+}
+#weak-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.weak-card {
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  margin: 0.8em 0;
+  color: white;
+}
+.weak-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.confidence-badge {
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  font-size: 0.85em;
+  color: black;
+}
+.weak-remove {
+  margin-left: auto;
+  cursor: pointer;
+}
+.weak-arabic {
+  font-size: 1.4em;
+  direction: rtl;
+}
+.weak-english,
+.weak-empty {
+  color: #9ca3af;
+}
