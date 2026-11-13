@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Loads the Arabic sentence CSV into PostgreSQL",
   "scripts": {
-    "load": "node load.js"
+    "load": "node load.js",
+    "load-glosses": "node load_glosses.js"
   },
   "dependencies": {
     "csv-parse": "^5.5.6",

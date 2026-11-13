@@ -50,7 +50,19 @@ function render() {
       render();
     });
 
-    head.append(word, badge, remove);
+    head.append(word);
+
+    // english words show their arabic; arabic words show their english meaning
+    const extra = entry.arabicWord || entry.translation;
+    if (extra) {
+      const ex = document.createElement("span");
+      ex.className = entry.arabicWord ? "weak-extra-arabic" : "weak-extra";
+      if (entry.arabicWord) ex.dir = "rtl";
+      ex.textContent = extra;
+      head.append(ex);
+    }
+
+    head.append(badge, remove);
 
     const arabic = document.createElement("p");
     arabic.className = "weak-arabic";

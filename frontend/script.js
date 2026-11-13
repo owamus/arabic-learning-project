@@ -109,7 +109,8 @@ function enableArabicWordPopups() {
 
     tip.addEventListener("click", () => {
       if (tip.classList.contains("added")) return;
-      saveWeakWord(clean, "hard"); // flagged by the user, so it starts as "hard"
+      // flagged by the user, so it starts as "hard"; add the English meaning if we know it
+      saveWeakWord(clean, "hard", { translation: englishForArabic(clean) });
       tip.textContent = "Added ✓";
       tip.classList.add("added");
     });
@@ -153,9 +154,10 @@ function loadWeakWords() {
 }
 
 // saves (or overwrites) a word with its perceived confidence + the sentence it came from
-function saveWeakWord(word, confidence) {
+function saveWeakWord(word, confidence, extra = {}) {
   const all = loadWeakWords();
   all[word] = {
+    ...extra, // arabicWord (for english words) or translation (for arabic words)
     word,
     confidence,
     arabic: currentSentence.arabic,
@@ -163,6 +165,27 @@ function saveWeakWord(word, confidence) {
     updated: Date.now(),
   };
   localStorage.setItem(WEAK_KEY, JSON.stringify(all));
+}
+
+//---- word glosses (from the backend): which arabic word matches which english word ----
+function normaliseArabic(w) {
+  return w.replace(/[.,،؟?!؛:"“”()«»]/g, "").trim();
+}
+
+// arabic word(s) in the current sentence that mean this english word
+function arabicForEnglish(word) {
+  const forms = (currentSentence.glosses || [])
+    .filter((g) => g.english.split(" ").includes(word))
+    .map((g) => g.arabic_form);
+  return [...new Set(forms)].join(" ");
+}
+
+// english meaning of an arabic word in the current sentence
+function englishForArabic(arabicWord) {
+  const g = (currentSentence.glosses || []).find(
+    (g) => normaliseArabic(g.arabic_form) === arabicWord,
+  );
+  return g ? g.english : "";
 }
 
 //shows each missed word with easy / medium / hard buttons
@@ -185,12 +208,21 @@ function showConfidencePicker(words) {
     label.textContent = word;
     row.appendChild(label);
 
+    const arabic = arabicForEnglish(word);
+    if (arabic) {
+      const ar = document.createElement("span");
+      ar.className = "confidence-arabic";
+      ar.dir = "rtl";
+      ar.textContent = arabic;
+      row.appendChild(ar);
+    }
+
     LEVELS.forEach((level) => {
       const btn = document.createElement("button");
       btn.className = "confidence-btn " + level;
       btn.textContent = level;
       btn.addEventListener("click", () => {
-        saveWeakWord(word, level);
+        saveWeakWord(word, level, { arabicWord: arabic });
         row
           .querySelectorAll(".confidence-btn")
           .forEach((b) => b.classList.remove("selected"));

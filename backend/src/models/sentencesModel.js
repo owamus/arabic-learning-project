@@ -13,8 +13,28 @@ async function getRandomSentence(level) {
         `SELECT ${cols} FROM sentences ORDER BY RANDOM() LIMIT 1`,
       );
   const sentence = res.rows[0];
-  if (sentence) sentence.distractors = await getDistractors(sentence);
+  if (sentence) {
+    sentence.distractors = await getDistractors(sentence);
+    sentence.glosses = await getGlosses(sentence.id);
+  }
   return sentence;
+}
+
+// Word-by-word glosses: which Arabic word covers which English word(s).
+// Returns [] if the glosses have not been loaded yet.
+async function getGlosses(sentenceId) {
+  try {
+    const res = await client.query(
+      `SELECT position, arabic_form, english FROM sentence_words
+       WHERE sentence_id = $1 AND english IS NOT NULL AND english <> ''
+       ORDER BY position`,
+      [sentenceId],
+    );
+    return res.rows;
+  } catch (err) {
+    console.error("Could not read glosses:", err.message);
+    return [];
+  }
 }
 
 // same cleanup the frontend uses: strip punctuation, lowercase
