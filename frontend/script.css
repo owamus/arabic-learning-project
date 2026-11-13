@@ -2,10 +2,9 @@
 
 body,
 html {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 html,
 body {
@@ -19,6 +18,7 @@ button {
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   padding: 20px 150px;
   box-sizing: border-box;
   color: white;
@@ -52,8 +52,8 @@ button {
   gap: 10px;
   width: 80%;
   margin: 0 auto;
-  flex: 1;
-  overflow-y: auto; /* was scroll: no empty scrollbar unless it's needed */
+  flex: 1 0 auto; /* grows to fill space but never shrinks, so words are never hidden */
+  min-height: 120px;
   position: relative;
   padding: 16px 12px;
   scrollbar-width: thin;
@@ -132,7 +132,7 @@ button {
 .sentence-builder-space {
   border-bottom: dashed;
   border-color: rgb(124, 120, 120);
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .beneath-arabic {
@@ -263,9 +263,22 @@ button:disabled:hover {
 
 /* weak words page */
 .weak-link {
-  display: inline-block;
-  margin: 1em;
-  color: #93c5fd;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  padding: 10px 18px;
+  border: 1.5px solid white;
+  border-radius: 25px;
+  background: rgb(63, 61, 61);
+  color: white;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.12s ease;
+}
+.weak-link:hover {
+  background: rgba(74, 198, 78, 0.76);
 }
 .weak-heading {
   color: white;
