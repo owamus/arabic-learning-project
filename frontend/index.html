@@ -1,46 +1,28 @@
 <!doctype html>
 <html>
   <head>
-    <title>Arabic Practice</title>
+    <title>Arabic Practice - Home</title>
     <link rel="stylesheet" href="script.css" />
+    <style>
+      body {
+        background-color: rgb(0, 0, 0);
+      }
+    </style>
   </head>
-  <style>
-    body {
-      background-color: rgb(0, 0, 0);
-    }
-  </style>
-  <body>
-    <div class="arabic">
-      <h1 id="sentence">Loading...</h1>
+  <body class="home-body">
+    <div class="nav-links">
+      <a class="weak-link" href="weak.html">Review my weak words</a>
     </div>
 
-    <div class="beneath-arabic"></div>
-    <div class="top-div">
-      <div class="sentence-builder-space">
-        <p class="title-sentence-space">Your sentence</p>
-        <p class="description-sentence">
-          Tap words below, in order, to build the sentence here.
-        </p>
-      </div>
+    <h1 class="home-title">Arabic Practice</h1>
+    <p class="home-sub">Pick a level and build the sentences.</p>
+
+    <div class="home-stats">
+      <div><span>Total correct</span> <b id="total-correct">0</b></div>
+      <div><span>Words to review</span> <b id="weak-count">0</b></div>
     </div>
 
-    <p id="result"></p>
-
-    <div class="centered-div"></div>
-
-    <div>
-      <button class="skip-btn" ; id="skip">skip</button>
-    </div>
-
-    <div>
-      <p id="feedback" aria-live="polite"></p>
-      <p id="correct-answer" aria-live="polite" hidden></p>
-    </div>
-
-    <div id="confidence-panel" hidden></div>
-
-    <button class="submitBtn">Submit</button>
-    <a class="weak-link" href="weak.html">Review my weak words</a>
-    <script src="script.js"></script>
+    <div class="level-grid" id="level-grid"></div>
+    <script src="home.js"></script>
   </body>
 </html>

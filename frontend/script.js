@@ -1,10 +1,34 @@
 //fetching the arabic sentence object from db
+// level comes from the home page via ?level=A1 (missing = mixed)
+const LEVEL = (new URLSearchParams(location.search).get("level") || "").toUpperCase();
+
 async function getSentence() {
-  const response = await fetch("http://localhost:3000/api/");
+  const url = "http://localhost:3000/api/" + (LEVEL ? "?level=" + LEVEL : "");
+  const response = await fetch(url);
   const data = await response.json();
   return data;
 }
 let currentSentence = null; // the sentence on screen right now
+
+document.getElementById("level-label").textContent = LEVEL
+  ? "Level " + LEVEL
+  : "Mixed levels";
+
+//---- progress stats (localStorage), shown on the home page ----
+function recordResult(correct) {
+  const key = LEVEL || "MIXED";
+  let stats;
+  try {
+    stats = JSON.parse(localStorage.getItem("levelStats")) || {};
+  } catch {
+    stats = {};
+  }
+  const s = stats[key] || { correct: 0, attempts: 0 };
+  s.attempts++;
+  if (correct) s.correct++;
+  stats[key] = s;
+  localStorage.setItem("levelStats", JSON.stringify(stats));
+}
 
 //adding english words into buttons
 //ADDING ANSWER BUTTONS
@@ -147,6 +171,8 @@ function CheckTranslation() {
   }
 
   const allCorrect = weakWords.length == 0 && built.length == expected.length;
+
+  recordResult(allCorrect);
 
   const feedback = document.getElementById("feedback");
   feedback.textContent = allCorrect ? "✓ Correct!" : "✗ Not quite";

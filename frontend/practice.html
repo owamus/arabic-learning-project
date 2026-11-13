@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Arabic Practice</title>
+    <link rel="stylesheet" href="script.css" />
+  </head>
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+    }
+  </style>
+  <body>
+    <div class="arabic">
+      <h1 id="sentence">Loading...</h1>
+    </div>
+
+    <div class="beneath-arabic"></div>
+    <div class="top-div">
+      <div class="sentence-builder-space">
+        <p class="title-sentence-space">Your sentence</p>
+        <p class="description-sentence">
+          Tap words below, in order, to build the sentence here.
+        </p>
+      </div>
+    </div>
+
+    <p id="level-label"></p>
+    <p id="result"></p>
+
+    <div class="centered-div"></div>
+
+    <div>
+      <button class="skip-btn" ; id="skip">skip</button>
+    </div>
+
+    <div>
+      <p id="feedback" aria-live="polite"></p>
+      <p id="correct-answer" aria-live="polite" hidden></p>
+    </div>
+
+    <div id="confidence-panel" hidden></div>
+
+    <button class="submitBtn">Submit</button>
+    <div class="nav-links">
+      <a class="weak-link" href="index.html">← Home</a>
+      <a class="weak-link" href="weak.html">Review my weak words</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
