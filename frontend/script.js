@@ -69,10 +69,61 @@ async function addEnglishBtns(eng_btns) {
   });
 }
 
+//puts the arabic sentence on screen as one span per word (hover tooltips are added after answering)
+function renderArabicSentence(text) {
+  const sentenceEl = document.getElementById("sentence");
+  sentenceEl.classList.remove("answered");
+  sentenceEl.innerHTML = "";
+
+  const wrapper = document.createElement("span");
+  wrapper.dir = "rtl";
+  text
+    .split(" ")
+    .filter((w) => w.length > 0)
+    .forEach((w, i) => {
+      if (i > 0) wrapper.appendChild(document.createTextNode(" "));
+      const span = document.createElement("span");
+      span.className = "arabic-word";
+      span.textContent = w;
+      wrapper.appendChild(span);
+    });
+  sentenceEl.appendChild(wrapper);
+}
+
+//after answering: hovering an arabic word shows an "add to weak words" popup above it
+function enableArabicWordPopups() {
+  const sentenceEl = document.getElementById("sentence");
+  sentenceEl.classList.add("answered");
+  const saved = loadWeakWords();
+
+  sentenceEl.querySelectorAll(".arabic-word").forEach((span) => {
+    // drop punctuation (. ، ؟ etc) but keep the diacritics
+    const clean = span.textContent.replace(/[.,،؟?!؛:"“”()«»]/g, "").trim();
+    if (!clean) return;
+
+    const tip = document.createElement("span");
+    tip.className = "arabic-tip";
+    tip.setAttribute("role", "button");
+    tip.textContent = saved[clean] ? "In weak words ✓" : "Add to weak words";
+    if (saved[clean]) tip.classList.add("added");
+
+    tip.addEventListener("click", () => {
+      if (tip.classList.contains("added")) return;
+      saveWeakWord(clean, "hard"); // flagged by the user, so it starts as "hard"
+      tip.textContent = "Added ✓";
+      tip.classList.add("added");
+    });
+
+    span.appendChild(tip);
+  });
+
+  document.getElementById("arabic-hint").classList.add("show");
+}
+
 //adding arabic sentence and answer buttons to the page
 async function addSentence() {
   currentSentence = await getSentence(); // saved for the check later
-  document.getElementById("sentence").innerText = currentSentence.arabic;
+  renderArabicSentence(currentSentence.arabic);
 
   // correct words + decoy words from the backend, shuffled together
   addEnglishBtns([
@@ -177,6 +228,7 @@ function CheckTranslation() {
   const allCorrect = weakWords.length == 0 && built.length == expected.length;
 
   recordResult(allCorrect);
+  enableArabicWordPopups();
 
   const feedback = document.getElementById("feedback");
   feedback.textContent = allCorrect ? "✓ Correct!" : "✗ Not quite";
@@ -215,6 +267,7 @@ document.querySelector(".skip-btn").addEventListener("click", (event) => {
   const panel = document.getElementById("confidence-panel");
   panel.innerHTML = "";
   panel.hidden = true;
+  document.getElementById("arabic-hint").classList.remove("show");
   document.querySelector(".skip-btn").textContent = "skip";
   document.querySelector(".submitBtn").disabled = false;
   addSentence();

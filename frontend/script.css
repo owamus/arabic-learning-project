@@ -414,3 +414,53 @@ button:disabled:hover {
   width: 616px;
   max-width: 100%;
 }
+
+/* arabic word popups (after answering) */
+#arabic-hint {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  font-family: "roboto", sans-serif;
+  visibility: hidden;
+}
+#arabic-hint.show {
+  visibility: visible;
+}
+.arabic-word {
+  position: relative;
+}
+#sentence.answered .arabic-word:hover {
+  background: rgb(63, 61, 61);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.arabic-tip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 4px 12px;
+  border: 1.5px solid white;
+  border-radius: 15px;
+  background: rgb(63, 61, 61);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  direction: ltr;
+  white-space: nowrap;
+  cursor: pointer;
+}
+#sentence.answered .arabic-word:hover .arabic-tip {
+  display: block;
+}
+.arabic-tip:hover {
+  background: rgb(110, 110, 110);
+}
+.arabic-tip.added {
+  color: #10b981;
+  border-color: #10b981;
+  cursor: default;
+}
