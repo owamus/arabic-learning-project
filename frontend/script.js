@@ -241,6 +241,92 @@ function showConfidencePicker(words) {
 //need to combine words of english translation into array.
 //then we check the order and items match, if so we say correct, if false, we can keep track of the words that were red, and store them as weak words
 //we need to also lock the buttons once, the submit button clicked
+//---- working out WHAT kind of mistake was made ----
+// small "grammar" words: if these are wrong/missing it is a grammar mistake, not a vocabulary one
+const FUNCTION_WORDS = new Set(
+  (
+    "a an the is are am was were be been being do does did will would shall should can could may might must " +
+    "has have had not dont doesnt didnt isnt arent wasnt werent cant couldnt wouldnt wont hasnt havent hadnt " +
+    "i you he she it we they me him her us them my your his its our their " +
+    "of to in on at by for from with about into and or but so that this these those as if"
+  ).split(" "),
+);
+
+// counts how many times each word appears
+function countWords(words) {
+  const counts = new Map();
+  words.forEach((w) => counts.set(w, (counts.get(w) || 0) + 1));
+  return counts;
+}
+
+// compares what the user built with the answer.
+// vocab   = content words (house, big...) that were wrong or missing
+// grammar = small words (is, the...) wrong/missing/extra, or the words are in the wrong order
+function diagnoseMistakes(builtWords, expected) {
+  const have = countWords(builtWords);
+  const want = countWords(expected);
+
+  const missing = []; // in the answer but not built enough times
+  const extra = []; // built but not in the answer (or built too many times)
+  want.forEach((n, w) => {
+    for (let i = have.get(w) || 0; i < n; i++) missing.push(w);
+  });
+  have.forEach((n, w) => {
+    for (let i = want.get(w) || 0; i < n; i++) extra.push(w);
+  });
+
+  const missingContent = missing.filter((w) => !FUNCTION_WORDS.has(w));
+  const missingSmall = missing.filter((w) => FUNCTION_WORDS.has(w));
+  const extraContent = extra.filter((w) => !FUNCTION_WORDS.has(w));
+  const extraSmall = extra.filter((w) => FUNCTION_WORDS.has(w));
+
+  // order: look only at words the user got right, ignoring missing/extra ones
+  const common = new Map();
+  want.forEach((n, w) => {
+    if (have.has(w)) common.set(w, Math.min(n, have.get(w)));
+  });
+  const keep = (words) => {
+    const left = new Map(common);
+    return words.filter((w) => {
+      const n = left.get(w) || 0;
+      if (n > 0) left.set(w, n - 1);
+      return n > 0;
+    });
+  };
+  const orderWrong = keep(builtWords).join(" ") !== keep(expected).join(" ");
+
+  return {
+    vocab: missingContent.length > 0 || extraContent.length > 0,
+    grammar: missingSmall.length > 0 || extraSmall.length > 0 || orderWrong,
+    missingContent,
+    extraContent,
+    missingSmall,
+    extraSmall,
+    orderWrong,
+  };
+}
+
+// turns the diagnosis into a short headline + detail line
+function describeMistakes(d) {
+  let headline = "✗ Not quite";
+  if (d.vocab && d.grammar) headline = "✗ Grammar and word mistakes";
+  else if (d.grammar) headline = "✗ Grammar mistake";
+  else if (d.vocab) headline = "✗ Word mistake";
+
+  const details = [];
+  if (d.orderWrong) details.push("Your word order is different from the answer.");
+  if (d.missingSmall.length)
+    details.push("Small words missing: " + [...new Set(d.missingSmall)].join(", ") + ".");
+  if (d.extraSmall.length)
+    details.push("Small words you did not need: " + [...new Set(d.extraSmall)].join(", ") + ".");
+  if (d.missingContent.length)
+    details.push("Words you missed: " + [...new Set(d.missingContent)].join(", ") + ".");
+  if (d.extraContent.length)
+    details.push("Wrong words used: " + [...new Set(d.extraContent)].join(", ") + ".");
+
+  return { headline, detail: details.join(" ") };
+}
+
 function CheckTranslation() {
   const built = document.querySelectorAll(".translation");
   const expected = splitEnglish(currentSentence.english);
@@ -263,7 +349,12 @@ function CheckTranslation() {
   enableArabicWordPopups();
 
   const feedback = document.getElementById("feedback");
-  feedback.textContent = allCorrect ? "✓ Correct!" : "✗ Not quite";
+  const diagnosis = diagnoseMistakes(
+    [...built].map((b) => normalise(b.innerText)),
+    expected,
+  );
+  const mistake = describeMistakes(diagnosis);
+  feedback.textContent = allCorrect ? "✓ Correct!" : mistake.headline;
   feedback.classList.remove("correct", "incorrect");
   feedback.classList.add(allCorrect ? "correct" : "incorrect");
   document.querySelector(".skip-btn").textContent = "next question";
@@ -275,8 +366,13 @@ function CheckTranslation() {
     answerEl.hidden = false;
   }
 
-  // let the user rate how confident they are with each missed word
-  if (!allCorrect) showConfidencePicker([...new Set(weakWords)]);
+  // say what kind of mistake it was (grammar vs word)
+  const detailEl = document.getElementById("mistake-detail");
+  detailEl.textContent = allCorrect ? "" : mistake.detail;
+  detailEl.hidden = allCorrect || !mistake.detail;
+
+  // only word (vocabulary) mistakes go to the confidence picker; grammar mistakes do not
+  if (!allCorrect) showConfidencePicker([...new Set(diagnosis.missingContent)]);
 
   // lock everything (disabled buttons can't be clicked, so no listeners to remove)
   document
@@ -296,6 +392,9 @@ document.querySelector(".skip-btn").addEventListener("click", (event) => {
   const answerEl = document.getElementById("correct-answer");
   answerEl.textContent = "";
   answerEl.hidden = true;
+  const detailEl = document.getElementById("mistake-detail");
+  detailEl.textContent = "";
+  detailEl.hidden = true;
   const panel = document.getElementById("confidence-panel");
   panel.innerHTML = "";
   panel.hidden = true;

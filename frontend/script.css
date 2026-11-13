@@ -476,3 +476,8 @@ button:disabled:hover {
 .weak-extra {
   color: #9ca3af;
 }
+
+#mistake-detail {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
