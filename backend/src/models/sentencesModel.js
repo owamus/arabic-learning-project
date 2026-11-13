@@ -12,7 +12,37 @@ async function getRandomSentence(level) {
     : await client.query(
         `SELECT ${cols} FROM sentences ORDER BY RANDOM() LIMIT 1`,
       );
-  return res.rows[0];
+  const sentence = res.rows[0];
+  if (sentence) sentence.distractors = await getDistractors(sentence);
+  return sentence;
+}
+
+// same cleanup the frontend uses: strip punctuation, lowercase
+function normalise(word) {
+  return word
+    .replace(/[!"“”#$%&'’‘()*+,\-./:;<=>?@[\]^_`{|}~]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+// Picks a few extra English words (taken from other sentences of the same level)
+// that are NOT in the correct answer, to sit in the word bank as decoys.
+async function getDistractors(sentence) {
+  const res = await client.query(
+    "SELECT english FROM sentences WHERE id <> $1 AND level = $2 ORDER BY RANDOM() LIMIT 6",
+    [sentence.id, sentence.level],
+  );
+
+  const correct = new Set(sentence.english.split(" ").map(normalise));
+  const pool = new Set();
+  for (const row of res.rows) {
+    for (const w of row.english.split(" ").map(normalise)) {
+      if (w.length > 0 && !correct.has(w)) pool.add(w);
+    }
+  }
+
+  const count = Math.min(4, Math.max(2, Math.round(correct.size * 0.3)));
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, count);
 }
 
 export default getRandomSentence;
