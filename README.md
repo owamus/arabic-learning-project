@@ -1,5 +1,7 @@
 # Arabic Sentence Builder
 
+**Live site: <https://jumlalearn.onrender.com/>** (the free server sleeps when idle, so the first visit can take up to a minute)
+
 A web app for practising Arabic by translating whole sentences. You read an Arabic sentence, then build the English translation by tapping word tiles in order. The app tells you what kind of mistake you made, lets you save the words you struggle with, and shows the grammar behind each sentence.
 
 ## Features
