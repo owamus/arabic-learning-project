@@ -6,7 +6,8 @@
   "description": "Loads the Arabic sentence CSV into PostgreSQL",
   "scripts": {
     "load": "node load.js",
-    "load-glosses": "node load_glosses.js"
+    "load-glosses": "node load_glosses.js",
+    "load:neon": "sh load-neon.sh"
   },
   "dependencies": {
     "csv-parse": "^5.5.6",
