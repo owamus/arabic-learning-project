@@ -69,10 +69,122 @@ async function addEnglishBtns(eng_btns) {
   });
 }
 
+//---- grammar highlighter ----
+// role id -> [label shown under the word, arabic term + meaning, colour]
+const ROLE_INFO = {
+  subject: ["subject", "مبتدأ – what the sentence is about", "#60a5fa"],
+  predicate: ["predicate", "خبر – what is said about the subject", "#34d399"],
+  verb: ["verb", "فعل", "#f87171"],
+  doer: ["doer", "فاعل – who does the verb", "#38bdf8"],
+  object: ["object", "مفعول به – receives the verb", "#fbbf24"],
+  adjective: ["adjective", "صفة – describes a noun", "#f472b6"],
+  possessor: ["of / owner", "مضاف إليه – the 'of' noun", "#fb923c"],
+  preposition: ["preposition", "حرف جر", "#9ca3af"],
+  prep_object: ["after prep.", "مجرور – noun after a preposition", "#2dd4bf"],
+  linker: ["linker", "رابط – and / but / because / when", "#c4b5fd"],
+  particle: ["particle", "حرف – small grammar word", "#9ca3af"],
+  adverb: ["time / how", "ظرف – time, place or manner", "#a3e635"],
+  question_word: ["question", "أداة استفهام", "#fde047"],
+  demonstrative: ["this / that", "اسم إشارة", "#e879f9"],
+};
+
+const TYPE_INFO = {
+  nominal: [
+    "Nominal sentence · جملة اسمية",
+    "Starts with a noun. Pattern: subject + predicate. A predicate with no ال after a subject with ال means “is”: البيت كبير = the house is big. With ال on both (البيت الكبير) it is only “the big house”, not a sentence.",
+  ],
+  verbal: [
+    "Verbal sentence · جملة فعلية",
+    "Starts with a verb. Pattern: verb + doer + object.",
+  ],
+  question: [
+    "Question · جملة استفهامية",
+    "Starts with a question word (هل, أين, كم, ماذا, كيف).",
+  ],
+  conditional: [
+    "Conditional sentence · جملة شرطية",
+    "An “if … then …” sentence, started by a word like لو, إذا or لولا.",
+  ],
+};
+
+function resetGrammarToggle() {
+  document.getElementById("sentence").classList.remove("grammar-on");
+  const btn = document.getElementById("grammar-btn");
+  btn.textContent = "Show grammar";
+  btn.disabled = true;
+  const legend = document.getElementById("grammar-legend");
+  legend.innerHTML = "";
+  legend.hidden = true;
+}
+
+// builds the legend (sentence type + only the roles used in this sentence)
+function buildGrammarLegend(roles) {
+  const legend = document.getElementById("grammar-legend");
+  legend.innerHTML = "";
+
+  const type = TYPE_INFO[currentSentence.sentence_type];
+  if (type) {
+    const t = document.createElement("p");
+    t.className = "legend-type";
+    const strong = document.createElement("b");
+    strong.textContent = type[0];
+    t.append(strong, " — " + type[1]);
+    legend.appendChild(t);
+  }
+
+  const chips = document.createElement("div");
+  chips.className = "legend-chips";
+  [...new Set(roles)].forEach((role) => {
+    const info = ROLE_INFO[role];
+    if (!info) return;
+    const chip = document.createElement("span");
+    chip.className = "legend-chip";
+    chip.style.setProperty("--role-colour", info[2]);
+    chip.textContent = info[0] + " · " + info[1];
+    chips.appendChild(chip);
+  });
+  legend.appendChild(chips);
+}
+
+// colours each arabic word by its role and unlocks the toggle button
+function enableGrammarHighlighter() {
+  const glosses = currentSentence.glosses || [];
+  const used = [];
+
+  document.querySelectorAll("#sentence .arabic-word").forEach((span, i) => {
+    const g = glosses.find((x) => x.position === i + 1);
+    const info = g && ROLE_INFO[g.role];
+    if (!info) return;
+    span.dataset.label = info[0];
+    span.style.setProperty("--role-colour", info[2]);
+    used.push(g.role);
+  });
+
+  const btn = document.getElementById("grammar-btn");
+  if (used.length === 0) {
+    btn.title = "No grammar data for this sentence yet";
+    return;
+  }
+  buildGrammarLegend(used);
+  btn.title = "";
+  btn.disabled = false;
+}
+
+document.getElementById("grammar-btn").addEventListener("click", () => {
+  const on = document
+    .getElementById("sentence")
+    .classList.toggle("grammar-on");
+  document.getElementById("grammar-btn").textContent = on
+    ? "Hide grammar"
+    : "Show grammar";
+  document.getElementById("grammar-legend").hidden = !on;
+});
+
 //puts the arabic sentence on screen as one span per word (hover tooltips are added after answering)
 function renderArabicSentence(text) {
   const sentenceEl = document.getElementById("sentence");
   sentenceEl.classList.remove("answered");
+  resetGrammarToggle();
   sentenceEl.innerHTML = "";
 
   const wrapper = document.createElement("span");
@@ -118,6 +230,7 @@ function enableArabicWordPopups() {
     span.appendChild(tip);
   });
 
+  enableGrammarHighlighter();
   document.getElementById("arabic-hint").classList.add("show");
 }
 
@@ -175,7 +288,7 @@ function normaliseArabic(w) {
 // arabic word(s) in the current sentence that mean this english word
 function arabicForEnglish(word) {
   const forms = (currentSentence.glosses || [])
-    .filter((g) => g.english.split(" ").includes(word))
+    .filter((g) => g.english && g.english.split(" ").includes(word))
     .map((g) => g.arabic_form);
   return [...new Set(forms)].join(" ");
 }
@@ -183,9 +296,9 @@ function arabicForEnglish(word) {
 // english meaning of an arabic word in the current sentence
 function englishForArabic(arabicWord) {
   const g = (currentSentence.glosses || []).find(
-    (g) => normaliseArabic(g.arabic_form) === arabicWord,
+    (g) => g.arabic_form && normaliseArabic(g.arabic_form) === arabicWord,
   );
-  return g ? g.english : "";
+  return g ? g.english || "" : "";
 }
 
 //shows each missed word with easy / medium / hard buttons

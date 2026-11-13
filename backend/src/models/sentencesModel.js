@@ -16,17 +16,19 @@ async function getRandomSentence(level) {
   if (sentence) {
     sentence.distractors = await getDistractors(sentence);
     sentence.glosses = await getGlosses(sentence.id);
+    sentence.sentence_type = await getSentenceType(sentence.id);
   }
   return sentence;
 }
 
 // Word-by-word glosses: which Arabic word covers which English word(s).
+// Words with no English (like هل) are still returned so their grammar role is kept.
 // Returns [] if the glosses have not been loaded yet.
 async function getGlosses(sentenceId) {
   try {
     const res = await client.query(
-      `SELECT position, arabic_form, english FROM sentence_words
-       WHERE sentence_id = $1 AND english IS NOT NULL AND english <> ''
+      `SELECT position, arabic_form, english, role FROM sentence_words
+       WHERE sentence_id = $1
        ORDER BY position`,
       [sentenceId],
     );
@@ -34,6 +36,20 @@ async function getGlosses(sentenceId) {
   } catch (err) {
     console.error("Could not read glosses:", err.message);
     return [];
+  }
+}
+
+// Grammar type of the sentence (nominal / verbal / question / conditional), or null if not loaded yet.
+async function getSentenceType(sentenceId) {
+  try {
+    const res = await client.query(
+      "SELECT sentence_type FROM sentences WHERE id = $1",
+      [sentenceId],
+    );
+    return res.rows[0]?.sentence_type || null;
+  } catch (err) {
+    console.error("Could not read sentence type:", err.message);
+    return null;
   }
 }
 

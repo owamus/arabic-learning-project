@@ -3,7 +3,8 @@ import path from "path";
 import pg from "pg";
 import { parse } from "csv-parse/sync";
 
-// Loads word_glosses.csv into sentence_words (arabic_form + english columns).
+// Loads word_glosses.csv into sentence_words (arabic_form, english, role) and
+// sets sentences.sentence_type.
 // Run schema.sql first so the columns exist, and load the sentences with load.js.
 // Usage:  DATABASE_URL=... node load_glosses.js [word_glosses.csv]
 const { Client } = pg;
@@ -35,13 +36,25 @@ async function main() {
       // sentence is found by its plain Arabic text, position picks the word
       const res = await client.query(
         `UPDATE sentence_words sw
-         SET arabic_form = $3, english = $4
+         SET arabic_form = $3, english = $4, role = $5
          FROM sentences s
          WHERE sw.sentence_id = s.id
            AND s.arabic_plain = $1
            AND sw.position = $2`,
-        [row.arabic_plain, Number(row.position), row.arabic_word, row.english],
+        [
+          row.arabic_plain,
+          Number(row.position),
+          row.arabic_word,
+          row.english,
+          row.role || null,
+        ],
       );
+      if (row.sentence_type) {
+        await client.query(
+          "UPDATE sentences SET sentence_type = $2 WHERE arabic_plain = $1",
+          [row.arabic_plain, row.sentence_type],
+        );
+      }
       if (res.rowCount === 0) notFound.push(`${row.arabic_plain} #${row.position}`);
       else updated += res.rowCount;
     }

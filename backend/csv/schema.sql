@@ -25,12 +25,15 @@ CREATE TABLE IF NOT EXISTS sentence_words (
     position     INTEGER NOT NULL,                  -- 1-based position in the sentence
     arabic_form  TEXT,                              -- the word as written in the sentence (with diacritics)
     english      TEXT,                              -- English word(s) this Arabic word covers, e.g. "the university"
+    role         TEXT,                              -- grammar role: subject, predicate, verb, doer, object, ...
     PRIMARY KEY (sentence_id, position)
 );
 
 -- For databases created before the gloss columns existed (safe to re-run):
 ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS arabic_form TEXT;
 ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS english     TEXT;
+ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS role        TEXT;
+ALTER TABLE sentences      ADD COLUMN IF NOT EXISTS sentence_type TEXT;  -- nominal / verbal / question / conditional
 
 CREATE INDEX IF NOT EXISTS idx_sentence_words_word_id ON sentence_words (word_id);
 CREATE INDEX IF NOT EXISTS idx_sentences_level        ON sentences (level);
