@@ -278,7 +278,8 @@ button:disabled:hover {
   transition: background-color 0.12s ease;
 }
 .weak-link:hover {
-  background: rgba(74, 198, 78, 0.76);
+  background: rgb(110, 110, 110);
+  opacity: 0.85;
 }
 .weak-heading {
   color: white;
