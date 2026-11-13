@@ -74,7 +74,11 @@ async function addSentence() {
   currentSentence = await getSentence(); // saved for the check later
   document.getElementById("sentence").innerText = currentSentence.arabic;
 
-  addEnglishBtns(splitEnglish(currentSentence.english));
+  // correct words + decoy words from the backend, shuffled together
+  addEnglishBtns([
+    ...splitEnglish(currentSentence.english),
+    ...(currentSentence.distractors || []),
+  ]);
 
   document
     .querySelectorAll(".answer-btns")
