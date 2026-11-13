@@ -2,8 +2,16 @@
 // level comes from the home page via ?level=A1 (missing = mixed)
 const LEVEL = (new URLSearchParams(location.search).get("level") || "").toUpperCase();
 
+// When the site is served by the backend (deployed, or http://localhost:3000) the API is on the same
+// address, so the base is empty. Only when the page is opened from Live Server (port 5500) or as a
+// file do we point at the local backend.
+const API =
+  location.protocol === "file:" || location.port === "5500"
+    ? "http://localhost:3000"
+    : "";
+
 async function getSentence() {
-  const url = "http://localhost:3000/api/" + (LEVEL ? "?level=" + LEVEL : "");
+  const url = API + "/api/" + (LEVEL ? "?level=" + LEVEL : "");
   const response = await fetch(url);
   const data = await response.json();
   return data;
@@ -68,6 +76,69 @@ async function addEnglishBtns(eng_btns) {
     }
   });
 }
+
+//---- GIFs (a funny GIF for the sentence, shown after answering) ----
+const GIF_KEY = "gifsOn";
+
+function gifsEnabled() {
+  try {
+    return localStorage.getItem(GIF_KEY) !== "off";
+  } catch {
+    return true;
+  }
+}
+
+function updateGifBtn() {
+  const btn = document.getElementById("gif-btn");
+  btn.textContent = "GIFs: " + (gifsEnabled() ? "on" : "off");
+  btn.classList.toggle("off", !gifsEnabled());
+}
+
+function hideGif() {
+  document.getElementById("gif-box").hidden = true;
+  document.getElementById("gif-img").removeAttribute("src");
+}
+
+// search phrase: the sentence's gif_keyword, else its english subject word, else its topic
+function gifQuery() {
+  if (currentSentence.gif_keyword) return currentSentence.gif_keyword;
+  const subject = (currentSentence.glosses || []).find((g) => g.role === "subject");
+  const word = subject?.english
+    .split(" ")
+    .find((w) => w && !FUNCTION_WORDS.has(w));
+  return word || (currentSentence.topic || "").replace(/_/g, " ");
+}
+
+async function showGif() {
+  if (!gifsEnabled()) return;
+  const forSentence = currentSentence; // ignore the result if the user has moved on
+  const q = gifQuery();
+  if (!q) return;
+  try {
+    const res = await fetch(API + "/api/gif?q=" + encodeURIComponent(q));
+    if (!res.ok) return; // no GIF found / key missing: just show nothing
+    const gif = await res.json();
+    if (forSentence !== currentSentence || !gifsEnabled()) return;
+    const img = document.getElementById("gif-img");
+    img.src = gif.url;
+    img.alt = gif.title || "";
+    document.getElementById("gif-box").hidden = false;
+  } catch {
+    // offline etc: the page works fine without a GIF
+  }
+}
+
+document.getElementById("gif-btn").addEventListener("click", () => {
+  const turnOn = !gifsEnabled();
+  try {
+    localStorage.setItem(GIF_KEY, turnOn ? "on" : "off");
+  } catch {}
+  updateGifBtn();
+  if (!turnOn) hideGif();
+  else if (document.getElementById("sentence").classList.contains("answered"))
+    showGif();
+});
+updateGifBtn();
 
 //---- grammar highlighter ----
 // role id -> [label shown under the word, arabic term + meaning, colour]
@@ -184,6 +255,7 @@ document.getElementById("grammar-btn").addEventListener("click", () => {
 function renderArabicSentence(text) {
   const sentenceEl = document.getElementById("sentence");
   sentenceEl.classList.remove("answered");
+  hideGif();
   resetGrammarToggle();
   sentenceEl.innerHTML = "";
 
@@ -231,6 +303,7 @@ function enableArabicWordPopups() {
   });
 
   enableGrammarHighlighter();
+  showGif();
   document.getElementById("arabic-hint").classList.add("show");
 }
 

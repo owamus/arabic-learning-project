@@ -538,3 +538,41 @@ button:disabled:hover {
   color: white;
   font-size: 0.8rem;
 }
+
+/* GIF box */
+#gif-box {
+  margin: 8px 0;
+}
+#gif-box img {
+  display: block;
+  max-height: 180px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+.gif-credit {
+  margin: 4px 0 0;
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+.nav-links button.weak-link {
+  margin: 0;
+  font-family: inherit;
+}
+
+/* GIF toggle: smaller, purple when on, dim when off */
+#gif-btn {
+  align-self: center;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  border-color: #8b5cf6;
+  background: #6d28d9;
+}
+#gif-btn:hover {
+  background: #8b5cf6;
+  opacity: 0.85;
+}
+#gif-btn.off {
+  background: rgb(63, 61, 61);
+  border-color: #6b7280;
+  color: #9ca3af;
+}
