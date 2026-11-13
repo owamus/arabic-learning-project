@@ -212,3 +212,7 @@ button:disabled:hover {
 #feedback.incorrect {
   color: #ef4444;
 }
+#correct-answer {
+  color: #fbbf24;
+  font-weight: bold;
+}

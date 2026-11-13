@@ -48,8 +48,7 @@ async function addEnglishBtns(eng_btns) {
 //adding arabic sentence and answer buttons to the page
 async function addSentence() {
   currentSentence = await getSentence(); // saved for the check later
-  document.getElementById("sentence").innerText =
-    currentSentence.arabic;
+  document.getElementById("sentence").innerText = currentSentence.arabic;
 
   addEnglishBtns(splitEnglish(currentSentence.english));
 
@@ -90,6 +89,13 @@ function CheckTranslation() {
   feedback.classList.add(allCorrect ? "correct" : "incorrect");
   document.querySelector(".skip-btn").textContent = "next question";
 
+  // show the correct answer when the user got it wrong
+  const answerEl = document.getElementById("correct-answer");
+  if (!allCorrect) {
+    answerEl.textContent = "Correct answer: " + currentSentence.english;
+    answerEl.hidden = false;
+  }
+
   // lock everything (disabled buttons can't be clicked, so no listeners to remove)
   document
     .querySelectorAll(".translation, .answer-btns, .submitBtn")
@@ -105,6 +111,9 @@ document.querySelector(".skip-btn").addEventListener("click", (event) => {
   const feedback = document.getElementById("feedback");
   feedback.textContent = "";
   feedback.classList.remove("correct", "incorrect");
+  const answerEl = document.getElementById("correct-answer");
+  answerEl.textContent = "";
+  answerEl.hidden = true;
   document.querySelector(".skip-btn").textContent = "skip";
   document.querySelector(".submitBtn").disabled = false;
   addSentence();
