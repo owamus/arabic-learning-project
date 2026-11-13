@@ -4,7 +4,7 @@ import pg from "pg";
 import { parse } from "csv-parse/sync";
 
 // Loads word_glosses.csv into sentence_words (arabic_form, english, role) and
-// sets sentences.sentence_type.
+// sets sentences.sentence_type and sentences.gif_keyword.
 // Run schema.sql first so the columns exist, and load the sentences with load.js.
 // Usage:  DATABASE_URL=... node load_glosses.js [word_glosses.csv]
 const { Client } = pg;
@@ -49,10 +49,13 @@ async function main() {
           row.role || null,
         ],
       );
-      if (row.sentence_type) {
+      if (row.sentence_type || row.gif_keyword) {
         await client.query(
-          "UPDATE sentences SET sentence_type = $2 WHERE arabic_plain = $1",
-          [row.arabic_plain, row.sentence_type],
+          `UPDATE sentences
+           SET sentence_type = COALESCE($2, sentence_type),
+               gif_keyword   = COALESCE($3, gif_keyword)
+           WHERE arabic_plain = $1`,
+          [row.arabic_plain, row.sentence_type || null, row.gif_keyword || null],
         );
       }
       if (res.rowCount === 0) notFound.push(`${row.arabic_plain} #${row.position}`);

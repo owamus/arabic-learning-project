@@ -16,7 +16,7 @@ async function getRandomSentence(level) {
   if (sentence) {
     sentence.distractors = await getDistractors(sentence);
     sentence.glosses = await getGlosses(sentence.id);
-    sentence.sentence_type = await getSentenceType(sentence.id);
+    Object.assign(sentence, await getSentenceExtras(sentence.id));
   }
   return sentence;
 }
@@ -39,17 +39,21 @@ async function getGlosses(sentenceId) {
   }
 }
 
-// Grammar type of the sentence (nominal / verbal / question / conditional), or null if not loaded yet.
-async function getSentenceType(sentenceId) {
+// Extra per-sentence info: grammar type (nominal / verbal / ...) and the GIF search phrase.
+// Both are null if the columns have not been loaded yet.
+async function getSentenceExtras(sentenceId) {
   try {
     const res = await client.query(
-      "SELECT sentence_type FROM sentences WHERE id = $1",
+      "SELECT sentence_type, gif_keyword FROM sentences WHERE id = $1",
       [sentenceId],
     );
-    return res.rows[0]?.sentence_type || null;
+    return {
+      sentence_type: res.rows[0]?.sentence_type || null,
+      gif_keyword: res.rows[0]?.gif_keyword || null,
+    };
   } catch (err) {
-    console.error("Could not read sentence type:", err.message);
-    return null;
+    console.error("Could not read sentence extras:", err.message);
+    return { sentence_type: null, gif_keyword: null };
   }
 }
 

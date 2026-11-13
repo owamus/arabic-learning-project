@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import sentenceRoutes from './routes/sentenceRoutes.js'
 import cors from 'cors';

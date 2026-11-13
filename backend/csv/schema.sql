@@ -34,6 +34,7 @@ ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS arabic_form TEXT;
 ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS english     TEXT;
 ALTER TABLE sentence_words ADD COLUMN IF NOT EXISTS role        TEXT;
 ALTER TABLE sentences      ADD COLUMN IF NOT EXISTS sentence_type TEXT;  -- nominal / verbal / question / conditional
+ALTER TABLE sentences      ADD COLUMN IF NOT EXISTS gif_keyword   TEXT;  -- search phrase for the GIF shown after answering
 
 CREATE INDEX IF NOT EXISTS idx_sentence_words_word_id ON sentence_words (word_id);
 CREATE INDEX IF NOT EXISTS idx_sentences_level        ON sentences (level);
